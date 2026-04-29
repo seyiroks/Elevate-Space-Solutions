@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 const Contact = () => {
   return (
     <section className="bg-white py-20">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
         {/* Heading */}
         <div className="flex items-center justify-center gap-4 mb-24">
           <span className="w-10 h-[4px] bg-[#c6a85b]"></span>
@@ -13,7 +13,7 @@ const Contact = () => {
         </div>
 
         {/* Content */}
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
           {/* Left Card */}
           <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_4px_8px_rgba(0,0,0,0.25)] px-12 py-16">
             <h3 className="text-3xl font-bold text-[#c6a85b] mb-8">
