@@ -7,6 +7,8 @@ const Transformation = () => {
   const [dragging, setDragging] = useState(false);
 
   const updatePosition = (clientX) => {
+    if (!containerRef.current) return;
+
     const rect = containerRef.current.getBoundingClientRect();
     let newPos = ((clientX - rect.left) / rect.width) * 100;
 
@@ -19,7 +21,6 @@ const Transformation = () => {
   return (
     <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-6">
-
         {/* Section Heading */}
         <div className="flex items-center justify-center gap-4 mb-16">
           <span className="w-10 h-[4px] bg-[#c6a85b]"></span>
@@ -32,7 +33,7 @@ const Transformation = () => {
         <div className="flex justify-center">
           <div
             ref={containerRef}
-            className="relative w-full max-w-6xl aspect-[1199/807] bg-black shadow-lg select-none"
+            className="relative w-full max-w-6xl aspect-[1199/807] bg-black shadow-lg select-none touch-none"
             onMouseDown={() => setDragging(true)}
             onMouseUp={() => setDragging(false)}
             onMouseLeave={() => setDragging(false)}
@@ -41,8 +42,7 @@ const Transformation = () => {
             onTouchEnd={() => setDragging(false)}
             onTouchMove={(e) => updatePosition(e.touches[0].clientX)}
           >
-
-            {/* AFTER (Base Layer - Right Side) */}
+            {/* AFTER Layer */}
             <div className="absolute inset-0">
               <img
                 src="/after.jpg"
@@ -51,17 +51,16 @@ const Transformation = () => {
                 draggable={false}
               />
 
-              {/* AFTER Label (lives inside AFTER layer) */}
               <div className="absolute top-6 right-6 bg-black/70 text-white text-xs px-4 py-1 tracking-widest">
                 AFTER
               </div>
             </div>
 
-            {/* BEFORE (Clipped Reveal Layer - Left Side) */}
+            {/* BEFORE Layer */}
             <div
               className="absolute inset-0 overflow-hidden"
               style={{
-                clipPath: `inset(0 ${100 - position}% 0 0)`
+                clipPath: `inset(0 ${100 - position}% 0 0)`,
               }}
             >
               <img
@@ -71,7 +70,6 @@ const Transformation = () => {
                 draggable={false}
               />
 
-              {/* BEFORE Label (inside clipped layer) */}
               <div className="absolute top-6 left-6 bg-black/70 text-white text-xs px-4 py-1 tracking-widest">
                 BEFORE
               </div>
@@ -82,7 +80,7 @@ const Transformation = () => {
               className="absolute top-0 bottom-0 w-[2px] bg-white"
               style={{
                 left: `${position}%`,
-                transform: "translateX(-50%)"
+                transform: "translateX(-50%)",
               }}
             />
 
@@ -92,16 +90,14 @@ const Transformation = () => {
               style={{
                 left: `${position}%`,
                 top: "50%",
-                transform: "translate(-50%, -50%)"
+                transform: "translate(-50%, -50%)",
               }}
             >
               <ChevronLeft size={18} />
               <ChevronRight size={18} />
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
   );
