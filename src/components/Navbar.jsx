@@ -1,6 +1,6 @@
 const Navbar = () => {
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white/60 backdrop-blur-md">
+    <header className="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-sm">
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32 py-5 flex items-center justify-between">
         <h1 className="text-sm tracking-wide whitespace-nowrap">
           ELEVATE SPACE <span className="font-bold">SOLUTIONS</span>
