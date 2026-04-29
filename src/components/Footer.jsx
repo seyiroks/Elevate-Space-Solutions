@@ -2,23 +2,22 @@ const Footer = () => {
   return (
     <footer className="relative py-20 overflow-hidden text-black">
 
-      {/* Background Image */}
+      {/* Background */}
       <div className="absolute inset-0">
         <img
           src="/footer-bg.jpg"
           alt="Footer Background"
-          className="w-full h-full object-cover object-center object-[center_100%] scale-80 blur-[2px]"
+          className="w-full h-full object-cover object-[center_100%] scale-105 blur-[2px]"
         />
-        {/* White Overlay */}
         <div className="absolute inset-0 bg-white/75"></div>
       </div>
 
       {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative w-full px-6 md:px-12 lg:px-20 xl:px-32">
 
-        <div className="grid md:grid-cols-2 gap-20 items-start mb-20">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-start mb-20">
 
-          {/* LEFT SIDE */}
+          {/* LEFT */}
           <div className="space-y-8">
             <div>
               <h3 className="text-4xl font-semibold tracking-wide">
@@ -35,8 +34,8 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* RIGHT SIDE */}
-          <div className="md:text-left md:ml-auto">
+          {/* RIGHT */}
+          <div className="md:ml-auto md:text-left">
             <h4 className="text-2xl font-semibold mb-6">Navigation</h4>
 
             <ul className="space-y-4 text-xl">
