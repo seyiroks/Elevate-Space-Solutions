@@ -2,8 +2,8 @@ import { Clock, Award, ShieldCheck, Handshake } from "lucide-react";
 
 const TrustBar = () => {
   return (
-    <section className="bg-white py-20">
-      <div className="max-w-8xl mx-auto px-10 lg:px-20">
+    <section className="bg-white py-20 overflow-hidden">
+      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
         {/* Heading */}
         <div className="mb-20">
           <div className="flex items-start gap-3">
@@ -15,15 +15,15 @@ const TrustBar = () => {
         </div>
 
         {/* Timeline */}
-        <div className="relative h-[210px]">
+        <div className="relative h-[230px]">
           {/* Horizontal Line */}
           <div className="absolute top-1/2 left-0 w-full h-[3px] bg-black -translate-y-1/2"></div>
 
           <div className="grid grid-cols-4 h-full relative">
             {/* ITEM 1 */}
             <div className="relative">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-4 whitespace-nowrap">
-                <Clock className="text-[#c6a85b]" size={42} strokeWidth={1.8} />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center justify-center gap-4 whitespace-nowrap">
+                <Clock className="text-[#c6a85b] shrink-0" size={42} strokeWidth={1.8} />
                 <p className="font-bold text-xl">Same-Day Availability</p>
               </div>
 
@@ -32,8 +32,8 @@ const TrustBar = () => {
 
             {/* ITEM 2 */}
             <div className="relative">
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-4 whitespace-nowrap">
-                <ShieldCheck className="text-[#c6a85b]" size={42} strokeWidth={1.8} />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center justify-center gap-4 whitespace-nowrap">
+                <ShieldCheck className="text-[#c6a85b] shrink-0" size={42} strokeWidth={1.8} />
                 <p className="font-bold text-xl">Fully Insured</p>
               </div>
 
@@ -42,8 +42,8 @@ const TrustBar = () => {
 
             {/* ITEM 3 */}
             <div className="relative">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-4 whitespace-nowrap">
-                <Award className="text-[#c6a85b]" size={42} strokeWidth={1.8} />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center justify-center gap-4 whitespace-nowrap">
+                <Award className="text-[#c6a85b] shrink-0" size={42} strokeWidth={1.8} />
                 <p className="font-bold text-xl">High-Standard Finish</p>
               </div>
 
@@ -52,8 +52,8 @@ const TrustBar = () => {
 
             {/* ITEM 4 */}
             <div className="relative">
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-4 whitespace-nowrap">
-                <Handshake className="text-[#c6a85b]" size={42} strokeWidth={1.8} />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center justify-center gap-4 whitespace-nowrap">
+                <Handshake className="text-[#c6a85b] shrink-0" size={42} strokeWidth={1.8} />
                 <p className="font-bold text-xl">Trusted by Landlords & Hosts</p>
               </div>
 
