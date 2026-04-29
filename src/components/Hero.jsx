@@ -13,7 +13,7 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 w-full">
-        <div className="max-w-7x1 mx-auto px-48">
+        <div className="max-w-8xl mx-auto px-48">
 
           <div className="max-w-2xl text-left text-white mt-20">
 

@@ -34,7 +34,7 @@ const Contact = () => {
 
                 <div>
                   <p className="text-xl">Call us for inquiry</p>
-                  <p className="text-xl font-bold">+44-7700-123456</p>
+                  <p className="text-xl font-bold">07437 851843</p>
                 </div>
               </div>
 
@@ -48,7 +48,7 @@ const Contact = () => {
                 <div>
                   <p className="text-xl">Email us</p>
                   <p className="text-xl font-bold break-all">
-                    demo@elevatespacesolutions.com
+                    clean@kpelevatespacesolutions.com
                   </p>
                 </div>
               </div>
@@ -63,11 +63,9 @@ const Contact = () => {
                 <div>
                   <p className="text-xl">Service Area</p>
                   <p className="text-xl font-bold leading-snug">
-                    60 Queen Street
+                    Leicester &
                     <br />
-                    Bournemouth
-                    <br />
-                    BH27 7TY
+                    Surrounding Areas
                   </p>
                 </div>
               </div>
