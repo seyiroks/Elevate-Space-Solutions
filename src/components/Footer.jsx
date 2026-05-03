@@ -1,7 +1,23 @@
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+
+    if (section) {
+      const navbarHeight = 80;
+      const sectionTop =
+        section.getBoundingClientRect().top + window.scrollY - navbarHeight;
+
+      window.scrollTo({
+        top: sectionTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <footer className="relative py-20 overflow-hidden text-black">
-
       {/* Background */}
       <div className="absolute inset-0">
         <img
@@ -14,44 +30,70 @@ const Footer = () => {
 
       {/* Content */}
       <div className="relative w-full px-6 md:px-12 lg:px-20 xl:px-32">
-
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-start mb-16 md:mb-20 text-center md:text-left">
-
-          {/* LEFT */}
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-start mb-16 md:mb-20 text-center md:text-left">
+          
+          {/* Brand */}
           <div className="space-y-6 md:space-y-8">
-            <div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wide">
+            <button
+              onClick={() => scrollToSection("home")}
+              className="text-center md:text-left"
+            >
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wide hover:text-[#c6a85b] transition">
                 ELEVATE SPACE <span className="font-bold">SOLUTIONS</span>
               </h3>
-              <p className="mt-2 text-base md:text-lg">
-                Cleaning | Repairs | Design
-              </p>
-            </div>
+            </button>
 
-            <div className="space-y-2 md:space-y-4 text-sm md:text-lg">
+            <p className="text-base md:text-lg">
+              Cleaning | Repairs | Design
+            </p>
+
+            <div className="space-y-2 md:space-y-4 text-sm md:text-base">
               <p>Registered in England & Wales</p>
               <p>Company No: 1234567890</p>
             </div>
           </div>
 
-          {/* RIGHT */}
+          {/* Navigation */}
           <div className="md:ml-auto">
             <h4 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6">
               Navigation
             </h4>
 
-            <ul className="space-y-3 md:space-y-4 text-base md:text-xl">
-              <li className="hover:text-[#c6a85b] cursor-pointer transition">
-                Services
+            <ul className="space-y-3 md:space-y-4 text-base md:text-lg">
+              <li>
+                <button
+                  onClick={() => scrollToSection("services")}
+                  className="hover:text-[#c6a85b] transition"
+                >
+                  Services
+                </button>
               </li>
-              <li className="hover:text-[#c6a85b] cursor-pointer transition">
-                Work
+
+              <li>
+                <button
+                  onClick={() => scrollToSection("work")}
+                  className="hover:text-[#c6a85b] transition"
+                >
+                  Work
+                </button>
               </li>
-              <li className="hover:text-[#c6a85b] cursor-pointer transition">
-                About
+
+              <li>
+                <button
+                  onClick={() => scrollToSection("about")}
+                  className="hover:text-[#c6a85b] transition"
+                >
+                  About
+                </button>
               </li>
-              <li className="hover:text-[#c6a85b] cursor-pointer transition">
-                Contact Us
+
+              <li>
+                <button
+                  onClick={() => scrollToSection("contact")}
+                  className="hover:text-[#c6a85b] transition"
+                >
+                  Contact Us
+                </button>
               </li>
             </ul>
           </div>
@@ -59,10 +101,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="text-center text-sm md:text-lg">
-          © 2026 Elevate Space Solutions. All Rights Reserved.
+        <div className="border-t border-black/10 pt-6 text-center text-sm md:text-base">
+          © {currentYear} Elevate Space Solutions. All Rights Reserved.
         </div>
-
       </div>
     </footer>
   );
