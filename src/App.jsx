@@ -43,7 +43,7 @@ function App() {
       <BeforeAfterSlider />
 
       <section id="why-choose-us">
-        <WhyChooseUs />
+        <WhyChooseUs onQuoteClick={() => openQuoteModal()} />
       </section>
 
       <section id="process">
