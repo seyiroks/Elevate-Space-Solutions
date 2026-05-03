@@ -47,7 +47,7 @@ const Hero = ({ onQuoteClick }) => {
               and design services delivered to a high standard.
             </p>
 
-            <div className="flex flex-col items-center md:items-start gap-4 sm:gap-6 md:gap-10">
+            <div className="flex flex-col sm:flex-row md:flex-col items-center md:items-start gap-4 sm:gap-6">
               <button
                 onClick={onQuoteClick}
                 className="w-[220px] bg-primary text-white px-8 py-3 rounded-lg shadow-md hover:translate-y-[2px] hover:shadow-sm transition"
@@ -57,7 +57,7 @@ const Hero = ({ onQuoteClick }) => {
 
               <button
                 onClick={scrollToWork}
-                className="w-[220px] bg-primary text-white px-8 py-3 rounded-lg shadow-md hover:translate-y-[2px] hover:shadow-sm transition"
+                className="w-[220px] border border-white text-white px-8 py-3 rounded-lg shadow-md hover:bg-white hover:text-black hover:translate-y-[2px] hover:shadow-sm transition"
               >
                 View Our Work
               </button>
