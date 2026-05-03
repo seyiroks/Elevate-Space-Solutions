@@ -63,10 +63,10 @@ const Services = ({ onQuoteClick }) => {
             {services.map((service) => (
               <div
                 key={service.title}
-                className="group bg-white shadow-md hover:shadow-xl transition duration-300 h-full flex flex-col overflow-hidden"
+                className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 h-full flex flex-col overflow-hidden"
               >
                 {/* Image */}
-                <div className="overflow-hidden">
+                <div className="overflow-hidden rounded-t-2xl">
                   <img
                     src={service.image}
                     alt={service.alt}
@@ -84,7 +84,7 @@ const Services = ({ onQuoteClick }) => {
                     {service.description}
                   </p>
 
-                  {/* ✅ Features List */}
+                  {/* Features */}
                   <ul className="mb-6 space-y-2 text-sm text-gray-700">
                     {service.features.map((item, index) => (
                       <li key={index} className="flex items-start gap-2">
