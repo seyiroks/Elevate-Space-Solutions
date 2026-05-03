@@ -20,7 +20,7 @@ function App() {
       <Navbar onQuoteClick={() => setIsQuoteOpen(true)} />
 
       <section id="home">
-        <Hero />
+        <Hero onQuoteClick={() => setIsQuoteOpen(true)} />
       </section>
 
       <section id="about">
