@@ -1,11 +1,26 @@
-const CTA = () => {
+const CTA = ({ onQuoteClick }) => {
+  const scrollToContact = () => {
+    const section = document.getElementById("contact");
+
+    if (section) {
+      const navbarHeight = 80;
+      const sectionTop =
+        section.getBoundingClientRect().top + window.scrollY - navbarHeight;
+
+      window.scrollTo({
+        top: sectionTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <section className="relative py-20 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <img
           src="/cta-bg.jpg"
-          alt="CTA Background"
+          alt="Beautiful transformed interior space"
           className="w-full h-full object-cover object-[70%_100%] md:object-[center_100%] scale-105 blur-[4px]"
         />
         <div className="absolute inset-0 bg-white/80 md:bg-white/70"></div>
@@ -23,11 +38,17 @@ const CTA = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 md:gap-8">
-            <button className="w-[240px] sm:w-[300px] bg-[#c6a85b] text-white px-8 sm:px-10 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-medium shadow-md hover:translate-y-[2px] hover:shadow-sm transition">
+            <button
+              onClick={onQuoteClick}
+              className="w-[240px] sm:w-[300px] bg-[#c6a85b] text-white px-8 sm:px-10 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-medium shadow-md hover:translate-y-[2px] hover:shadow-sm transition"
+            >
               Get a Free Quote
             </button>
 
-            <button className="w-[240px] sm:w-[300px] bg-[#c6a85b] text-white px-8 sm:px-10 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-medium shadow-md hover:translate-y-[2px] hover:shadow-sm transition">
+            <button
+              onClick={scrollToContact}
+              className="w-[240px] sm:w-[300px] bg-white text-black border border-[#c6a85b] px-8 sm:px-10 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-medium shadow-md hover:bg-[#c6a85b] hover:text-white hover:translate-y-[2px] hover:shadow-sm transition"
+            >
               Contact Us
             </button>
           </div>
