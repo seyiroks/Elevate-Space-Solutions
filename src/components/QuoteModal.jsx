@@ -134,9 +134,6 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
               <option value="Interior Design & Decoration">
                 Interior Design & Decoration
               </option>
-              <option value="Full Property Transformation">
-                Full Property Transformation
-              </option>
             </select>
           </div>
 
