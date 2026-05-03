@@ -14,26 +14,33 @@ import QuoteModal from "./components/QuoteModal";
 
 function App() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState("");
+
+  const openQuoteModal = (service = "") => {
+    setSelectedService(service);
+    setIsQuoteOpen(true);
+  };
+
+  const closeQuoteModal = () => {
+    setIsQuoteOpen(false);
+    setSelectedService("");
+  };
 
   return (
     <>
-      <Navbar onQuoteClick={() => setIsQuoteOpen(true)} />
+      <Navbar onQuoteClick={() => openQuoteModal()} />
 
       <section id="home">
-        <Hero onQuoteClick={() => setIsQuoteOpen(true)} />
+        <Hero onQuoteClick={() => openQuoteModal()} />
       </section>
 
       <section id="about">
         <TrustBar />
       </section>
 
-      <section id="services">
-        <Services />
-      </section>
+      <Services onQuoteClick={openQuoteModal} />
 
-      <section id="work">
-        <BeforeAfterSlider />
-      </section>
+      <BeforeAfterSlider />
 
       <section id="why-choose-us">
         <WhyChooseUs />
@@ -47,7 +54,7 @@ function App() {
         <Testimonials />
       </section>
 
-      <CTA />
+      <CTA onQuoteClick={() => openQuoteModal()} />
 
       <section id="contact">
         <Contact />
@@ -57,7 +64,8 @@ function App() {
 
       <QuoteModal
         isOpen={isQuoteOpen}
-        onClose={() => setIsQuoteOpen(false)}
+        onClose={closeQuoteModal}
+        selectedService={selectedService}
       />
     </>
   );

@@ -1,6 +1,46 @@
-const Services = () => {
+const services = [
+  {
+    title: "Cleaning",
+    image: "/cleaning.jpg",
+    alt: "Professional cleaning service",
+    description:
+      "Spotless results, delivered with precision and care every time.",
+    features: [
+      "End of Tenancy Cleaning",
+      "Deep Cleaning",
+      "Airbnb & Short-Let Turnovers",
+      "Office & Residential Cleaning",
+    ],
+  },
+  {
+    title: "Interior Repairs",
+    image: "/repairs.jpg",
+    alt: "Interior repair service",
+    description:
+      "Fixing the details that matter, restoring your space with precision.",
+    features: [
+      "Wall Touch-Ups",
+      "Minor Repairs & Maintenance",
+      "Property Refresh Services",
+    ],
+  },
+  {
+    title: "Interior Design & Decoration",
+    image: "/design.jpg",
+    alt: "Interior design and decoration service",
+    description:
+      "Thoughtfully designed spaces that blend style, comfort, and function.",
+    features: [
+      "Interior Styling",
+      "Space Optimisation",
+      "Finishing & Modern Touches",
+    ],
+  },
+];
+
+const Services = ({ onQuoteClick }) => {
   return (
-    <section className="bg-[#efefef] py-20">
+    <section id="services" className="bg-[#efefef] py-20">
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
         {/* Heading */}
         <div className="text-center mb-12 md:mb-16">
@@ -10,81 +50,60 @@ const Services = () => {
               Our Services
             </h2>
           </div>
+
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+            Premium property care services designed to clean, repair, and
+            transform your space.
+          </p>
         </div>
 
-        {/* Cards Wrapper */}
+        {/* Cards */}
         <div className="max-w-5xl lg:max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
-            {/* Card 1 */}
-            <div className="bg-white shadow-md hover:shadow-lg transition duration-300 h-full flex flex-col">
-              <img
-                src="/cleaning.jpg"
-                alt="Cleaning"
-                className="w-full h-48 md:h-52 object-cover"
-              />
+            {services.map((service) => (
+              <div
+                key={service.title}
+                className="group bg-white shadow-md hover:shadow-xl transition duration-300 h-full flex flex-col overflow-hidden"
+              >
+                {/* Image */}
+                <div className="overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.alt}
+                    className="w-full h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500"
+                  />
+                </div>
 
-              <div className="p-5 md:p-6 flex flex-col flex-grow">
-                <h3 className="text-lg md:text-xl font-semibold mb-3">
-                  Cleaning
-                </h3>
+                {/* Content */}
+                <div className="p-5 md:p-6 flex flex-col flex-grow">
+                  <h3 className="text-lg md:text-xl font-semibold mb-3">
+                    {service.title}
+                  </h3>
 
-                <p className="text-gray-600 mb-4 text-sm md:text-base leading-relaxed flex-grow">
-                  Spotless results, delivered with precision and care every time.
-                </p>
+                  <p className="text-gray-600 mb-4 text-sm md:text-base leading-relaxed">
+                    {service.description}
+                  </p>
 
-                <a href="#" className="text-[#c6a85b] font-medium text-sm">
-                  Learn more →
-                </a>
+                  {/* ✅ Features List */}
+                  <ul className="mb-6 space-y-2 text-sm text-gray-700">
+                    {service.features.map((item, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-[#c6a85b] mt-[2px]">✓</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* CTA */}
+                  <button
+                    onClick={() => onQuoteClick(service.title)}
+                    className="text-left text-[#c6a85b] font-semibold text-sm hover:translate-x-1 transition"
+                  >
+                    Get Quote →
+                  </button>
+                </div>
               </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-white shadow-md hover:shadow-lg transition duration-300 h-full flex flex-col">
-              <img
-                src="/repairs.jpg"
-                alt="Interior Repairs"
-                className="w-full h-48 md:h-52 object-cover"
-              />
-
-              <div className="p-5 md:p-6 flex flex-col flex-grow">
-                <h3 className="text-lg md:text-xl font-semibold mb-3">
-                  Interior Repairs
-                </h3>
-
-                <p className="text-gray-600 mb-4 text-sm md:text-base leading-relaxed flex-grow">
-                  Fixing the details that matter, restoring your space with
-                  precision.
-                </p>
-
-                <a href="#" className="text-[#c6a85b] font-medium text-sm">
-                  Learn more →
-                </a>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-white shadow-md hover:shadow-lg transition duration-300 h-full flex flex-col">
-              <img
-                src="/design.jpg"
-                alt="Interior Design & Decoration"
-                className="w-full h-48 md:h-52 object-cover"
-              />
-
-              <div className="p-5 md:p-6 flex flex-col flex-grow">
-                <h3 className="text-lg md:text-xl font-semibold mb-3">
-                  Interior Design & Decoration
-                </h3>
-
-                <p className="text-gray-600 mb-4 text-sm md:text-base leading-relaxed flex-grow">
-                  Thoughtfully designed spaces that blend style, comfort, and
-                  function.
-                </p>
-
-                <a href="#" className="text-[#c6a85b] font-medium text-sm">
-                  Learn more →
-                </a>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

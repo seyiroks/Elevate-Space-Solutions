@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Transformation = () => {
   const containerRef = useRef(null);
   const [position, setPosition] = useState(50);
   const [dragging, setDragging] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   const updatePosition = (clientX) => {
     if (!containerRef.current) return;
@@ -18,45 +19,73 @@ const Transformation = () => {
     setPosition(newPos);
   };
 
+  const startDrag = () => {
+    setDragging(true);
+    setHasInteracted(true);
+  };
+
+  const stopDrag = () => {
+    setDragging(false);
+  };
+
+  useEffect(() => {
+    if (hasInteracted) return;
+
+    let direction = 1;
+
+    const interval = setInterval(() => {
+      setPosition((prev) => {
+        if (prev >= 65) direction = -1;
+        if (prev <= 35) direction = 1;
+
+        return prev + direction * 0.5;
+      });
+    }, 40);
+
+    return () => clearInterval(interval);
+  }, [hasInteracted]);
+
   return (
-    <section className="bg-white py-20">
+    <section id="work" className="bg-white py-20">
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
-
         {/* Heading */}
-        <div className="mb-14 md:mb-20">
-          <div className="flex items-start justify-center md:justify-start gap-3">
-            <span className="w-10 h-[4px] bg-[#c6a85b] mt-3"></span>
+        <div className="mb-14 md:mb-20 text-center">
+          <div className="flex justify-center items-center gap-3">
+            <span className="w-10 h-[4px] bg-[#c6a85b]"></span>
 
-            <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide leading-tight text-center md:text-left">
+            <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide leading-tight">
               Real Results, <br />
-              <span className="whitespace-nowrap">
-                Real Transformation
-              </span>
+              <span className="whitespace-nowrap">Real Transformation</span>
             </h2>
           </div>
+
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+            Slide across the image to compare the space before and after our
+            transformation work.
+          </p>
         </div>
 
         {/* Slider */}
         <div className="flex justify-center">
           <div
             ref={containerRef}
-            className="relative w-full max-w-6xl h-[320px] sm:h-[420px] md:h-auto md:aspect-[1199/807] bg-black shadow-lg select-none touch-none overflow-hidden"
-            onMouseDown={() => setDragging(true)}
-            onMouseUp={() => setDragging(false)}
-            onMouseLeave={() => setDragging(false)}
+            className="relative w-full max-w-6xl h-[320px] sm:h-[420px] md:h-auto md:aspect-[1199/807] bg-black shadow-xl select-none touch-none overflow-hidden"
+            onMouseDown={startDrag}
+            onMouseUp={stopDrag}
+            onMouseLeave={stopDrag}
             onMouseMove={(e) => dragging && updatePosition(e.clientX)}
-            onTouchStart={() => setDragging(true)}
-            onTouchEnd={() => setDragging(false)}
+            onTouchStart={startDrag}
+            onTouchEnd={stopDrag}
             onTouchMove={(e) => updatePosition(e.touches[0].clientX)}
           >
-
             {/* AFTER */}
             <div className="absolute inset-0">
               <img
                 src="/after.jpg"
-                alt="After"
+                alt="After transformation"
                 className="w-full h-full object-cover md:object-contain"
                 draggable={false}
+                onDragStart={(e) => e.preventDefault()}
               />
 
               <div className="absolute top-4 right-4 md:top-6 md:right-6 bg-black/70 text-white text-[10px] md:text-xs px-3 md:px-4 py-1 tracking-widest">
@@ -66,16 +95,19 @@ const Transformation = () => {
 
             {/* BEFORE */}
             <div
-              className="absolute inset-0 overflow-hidden"
+              className={`absolute inset-0 overflow-hidden ${
+                dragging ? "" : "transition-all duration-200"
+              }`}
               style={{
                 clipPath: `inset(0 ${100 - position}% 0 0)`,
               }}
             >
               <img
                 src="/before.jpg"
-                alt="Before"
+                alt="Before transformation"
                 className="w-full h-full object-cover md:object-contain"
                 draggable={false}
+                onDragStart={(e) => e.preventDefault()}
               />
 
               <div className="absolute top-4 left-4 md:top-6 md:left-6 bg-black/70 text-white text-[10px] md:text-xs px-3 md:px-4 py-1 tracking-widest">
@@ -85,7 +117,9 @@ const Transformation = () => {
 
             {/* Divider */}
             <div
-              className="absolute top-0 bottom-0 w-[2px] bg-white"
+              className={`absolute top-0 bottom-0 w-[2px] bg-white ${
+                dragging ? "" : "transition-all duration-200"
+              }`}
               style={{
                 left: `${position}%`,
                 transform: "translateX(-50%)",
@@ -94,7 +128,9 @@ const Transformation = () => {
 
             {/* Handle */}
             <div
-              className="absolute flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-white border-[3px] md:border-4 border-[#c6a85b] rounded-full shadow-md cursor-col-resize"
+              className={`absolute flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-white border-[3px] md:border-4 border-[#c6a85b] rounded-full shadow-md cursor-col-resize hover:scale-105 hover:shadow-lg transition ${
+                dragging ? "scale-105 shadow-lg" : ""
+              }`}
               style={{
                 left: `${position}%`,
                 top: "50%",
@@ -105,9 +141,14 @@ const Transformation = () => {
               <ChevronRight size={16} />
             </div>
 
+            {/* Hint */}
+            {!hasInteracted && (
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-xs md:text-sm bg-black/60 px-4 py-1 rounded-full tracking-wide">
+                Drag to compare
+              </div>
+            )}
           </div>
         </div>
-
       </div>
     </section>
   );
