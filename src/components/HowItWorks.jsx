@@ -1,83 +1,78 @@
-const HowItWorks = () => {
+const steps = [
+  {
+    label: "STEP 1",
+    title: "Request a Quote",
+    description:
+      "Tell us what your space needs, and we’ll provide a clear, tailored quote for the work required.",
+  },
+  {
+    label: "STEP 2",
+    title: "We Assess & Confirm",
+    description:
+      "We review the details, confirm the scope, and plan the best approach for a smooth, efficient service.",
+  },
+  {
+    label: "STEP 3",
+    title: "We Complete the Job",
+    description:
+      "Our team carries out the work with care, attention to detail, and a high-standard finish.",
+  },
+];
+
+const HowItWorks = ({ onQuoteClick }) => {
   return (
     <section className="bg-[#efefef] py-20">
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
+        {/* Heading */}
+        <div className="mb-14 md:mb-20 text-center">
+          <div className="flex justify-center items-center gap-3">
+            <span className="w-10 h-[4px] bg-[#c6a85b]"></span>
 
-        {/* Heading (Consistent Style) */}
-        <div className="mb-14 md:mb-24">
-          <div className="flex items-start justify-center gap-3">
-            <span className="w-10 h-[4px] bg-[#c6a85b] mt-3 shrink-0"></span>
-            <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide leading-tight text-center">
+            <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide">
               How It Works
             </h2>
           </div>
         </div>
 
-        {/* Steps Wrapper */}
+        {/* Steps */}
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-10 md:gap-16 lg:gap-20 text-center md:text-left">
+          <div className="relative grid md:grid-cols-3 gap-8 md:gap-10 lg:gap-14">
+            {/* Connector line (desktop only) */}
+            <div className="hidden md:block absolute top-10 left-[16%] right-[16%] h-[2px] bg-[#c6a85b]/30"></div>
 
-            {/* STEP 1 */}
-            <div className="bg-white md:bg-transparent p-6 md:p-0 rounded-xl md:rounded-none shadow-sm md:shadow-none">
-              <span className="inline-block bg-[#c6a85b] text-white text-xs md:text-sm font-semibold px-5 py-2 rounded-full mb-6">
-                STEP 1
-              </span>
-
-              <h3 className="text-xl md:text-2xl font-semibold mb-4">
-                Request a Quote
-              </h3>
-
-              <p className="text-gray-700 leading-relaxed max-w-sm mx-auto md:mx-0">
-                Tell us what your space needs, and we’ll provide a clear,
-                tailored quote for the work required.
-              </p>
-            </div>
-
-            {/* STEP 2 */}
-            <div className="bg-white md:bg-transparent p-6 md:p-0 rounded-xl md:rounded-none shadow-sm md:shadow-none">
-              <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
-                <div className="w-8 h-8 md:w-9 md:h-9 rounded-full border-2 border-[#c6a85b] flex items-center justify-center text-[#c6a85b] text-base md:text-lg font-bold">
-                  »
+            {steps.map((step) => (
+              <div
+                key={step.label}
+                className="relative bg-white p-6 md:p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 text-center"
+              >
+                {/* Step Label */}
+                <div className="mb-6">
+                  <span className="inline-block bg-[#c6a85b] text-white text-sm md:text-base font-semibold px-6 py-2 rounded-full tracking-wide shadow">
+                    {step.label}
+                  </span>
                 </div>
-                <span className="text-xs md:text-sm font-semibold tracking-wide">
-                  STEP 2
-                </span>
+
+                <h3 className="text-xl md:text-2xl font-semibold mb-4">
+                  {step.title}
+                </h3>
+
+                <p className="text-gray-700 leading-relaxed text-sm md:text-base">
+                  {step.description}
+                </p>
               </div>
-
-              <h3 className="text-xl md:text-2xl font-semibold mb-4">
-                We Assess & Confirm
-              </h3>
-
-              <p className="text-gray-700 leading-relaxed max-w-sm mx-auto md:mx-0">
-                We review the details, confirm the scope, and plan the best
-                approach for a smooth, efficient service.
-              </p>
-            </div>
-
-            {/* STEP 3 */}
-            <div className="bg-white md:bg-transparent p-6 md:p-0 rounded-xl md:rounded-none shadow-sm md:shadow-none">
-              <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
-                <div className="w-8 h-8 md:w-9 md:h-9 rounded-full border-2 border-[#c6a85b] flex items-center justify-center text-[#c6a85b] text-base md:text-lg font-bold">
-                  »
-                </div>
-                <span className="text-xs md:text-sm font-semibold tracking-wide">
-                  STEP 3
-                </span>
-              </div>
-
-              <h3 className="text-xl md:text-2xl font-semibold mb-4">
-                We Complete the Job
-              </h3>
-
-              <p className="text-gray-700 leading-relaxed max-w-sm mx-auto md:mx-0">
-                Our team carries out the work with care, attention to detail,
-                and a high-standard finish.
-              </p>
-            </div>
-
+            ))}
           </div>
         </div>
 
+        {/* CTA */}
+        <div className="text-center mt-14">
+          <button
+            onClick={onQuoteClick}
+            className="bg-[#c6a85b] text-white px-8 py-3 rounded-lg shadow-md hover:translate-y-[2px] hover:shadow-sm transition"
+          >
+            Start Your Project
+          </button>
+        </div>
       </div>
     </section>
   );

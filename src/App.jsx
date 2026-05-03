@@ -47,7 +47,7 @@ function App() {
       </section>
 
       <section id="process">
-        <HowItWorks />
+        <HowItWorks onQuoteClick={() => openQuoteModal()} />
       </section>
 
       <section id="testimonials">
