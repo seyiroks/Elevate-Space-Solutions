@@ -26,45 +26,45 @@ const trustItems = [
 
 const TrustBar = () => {
   return (
-    <section id="about" className="bg-white py-20 overflow-hidden">
-      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
+    <section id="about" className="bg-white py-16 sm:py-18 md:py-20 lg:py-24 overflow-hidden">
+      <div className="w-full px-5 sm:px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32">
         {/* Heading */}
-        <div className="mb-14 md:mb-20 text-center">
+        <div className="mb-10 sm:mb-12 md:mb-14 lg:mb-20 text-center">
           <div className="flex justify-center items-center gap-3">
             <span
               aria-hidden="true"
-              className="w-10 h-[4px] bg-[#c6a85b]"
+              className="w-8 sm:w-10 h-[4px] bg-[#c6a85b]"
             ></span>
 
-            <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-wide leading-tight">
               How We Make <br className="sm:hidden" />
               Your Choice Easy
             </h2>
           </div>
         </div>
 
-        {/* Mobile / Tablet */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:hidden">
+        {/* Mobile / Tablet Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 lg:hidden max-w-4xl mx-auto">
           {trustItems.map((item) => {
             const Icon = item.icon;
 
             return (
               <div
                 key={item.title}
-                className="bg-[#f7f7f7] rounded-2xl px-6 py-7 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 text-center"
+                className="bg-[#f7f7f7] rounded-2xl px-5 sm:px-6 md:px-7 py-7 md:py-8 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 text-center"
               >
                 <div
                   aria-hidden="true"
-                  className="w-14 h-14 mx-auto rounded-full bg-[#c6a85b] flex items-center justify-center mb-5"
+                  className="w-13 h-13 sm:w-14 sm:h-14 mx-auto rounded-full bg-[#c6a85b] flex items-center justify-center mb-5"
                 >
-                  <Icon className="text-white" size={28} strokeWidth={1.8} />
+                  <Icon className="text-white" size={27} strokeWidth={1.8} />
                 </div>
 
-                <h3 className="font-bold text-lg md:text-xl mb-2">
+                <h3 className="font-bold text-lg md:text-xl mb-2 leading-snug">
                   {item.title}
                 </h3>
 
-                <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-sm mx-auto">
                   {item.description}
                 </p>
               </div>
@@ -73,7 +73,7 @@ const TrustBar = () => {
         </div>
 
         {/* Desktop Timeline */}
-        <div className="relative hidden lg:block max-w-7xl mx-auto h-[380px]">
+        <div className="relative hidden lg:block max-w-7xl mx-auto h-[390px]">
           {/* Line */}
           <div
             aria-hidden="true"
@@ -89,20 +89,22 @@ const TrustBar = () => {
                 <div key={item.title} className="relative">
                   {/* Content */}
                   <div
-                    className={`absolute left-1/2 -translate-x-1/2 w-[260px] text-center ${
-                      isTop ? "bottom-[240px]" : "top-[240px]"
+                    className={`absolute left-1/2 -translate-x-1/2 w-[220px] xl:w-[250px] 2xl:w-[270px] text-center ${
+                      isTop ? "bottom-[245px]" : "top-[245px]"
                     }`}
                   >
                     <div className="flex justify-center mb-4">
                       <Icon
                         aria-hidden="true"
                         className="text-[#c6a85b]"
-                        size={42}
+                        size={40}
                         strokeWidth={1.8}
                       />
                     </div>
 
-                    <h3 className="font-bold text-lg mb-3">{item.title}</h3>
+                    <h3 className="font-bold text-base xl:text-lg mb-3 leading-snug">
+                      {item.title}
+                    </h3>
 
                     <p className="text-gray-600 text-sm leading-relaxed">
                       {item.description}
@@ -112,7 +114,7 @@ const TrustBar = () => {
                   {/* Circle */}
                   <div
                     aria-hidden="true"
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-[#c6a85b] rounded-full z-10 shadow-md"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 xl:w-14 xl:h-14 bg-[#c6a85b] rounded-full z-10 shadow-md"
                   ></div>
                 </div>
               );
