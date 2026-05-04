@@ -33,7 +33,7 @@ const WhyChooseUs = ({ onQuoteClick }) => {
   return (
     <section
       id="why-choose-us"
-      className="relative py-20 text-black overflow-hidden"
+      className="relative py-16 sm:py-18 md:py-20 lg:py-24 text-black overflow-hidden"
     >
       {/* Background */}
       <div aria-hidden="true" className="absolute inset-0">
@@ -47,27 +47,27 @@ const WhyChooseUs = ({ onQuoteClick }) => {
       </div>
 
       {/* Content */}
-      <div className="relative w-full px-6 md:px-12 lg:px-20 xl:px-32">
+      <div className="relative w-full px-5 sm:px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32">
         {/* Heading */}
-        <div className="mb-14 md:mb-20 text-center">
+        <div className="mb-10 md:mb-14 lg:mb-20 text-center">
           <div className="flex justify-center items-center gap-3">
             <span
               aria-hidden="true"
-              className="w-10 h-[4px] bg-[#c6a85b]"
+              className="w-8 sm:w-10 h-[4px] bg-[#c6a85b]"
             ></span>
 
-            <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-wide">
               Why Choose Us
             </h2>
           </div>
         </div>
 
         {/* Cards */}
-        <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="max-w-md sm:max-w-xl md:max-w-4xl xl:max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-6 xl:gap-8">
           {reasons.map((reason) => (
             <div
               key={reason.title}
-              className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 md:p-7 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 text-center"
+              className="bg-white rounded-2xl p-6 md:p-7 shadow-lg hover:shadow-xl hover:-translate-y-1 transition duration-300 text-center border border-black/5"
             >
               <div
                 aria-hidden="true"
@@ -76,11 +76,11 @@ const WhyChooseUs = ({ onQuoteClick }) => {
                 <CheckCircle size={28} className="text-[#c6a85b]" />
               </div>
 
-              <h3 className="text-lg md:text-xl font-semibold mb-3">
+              <h3 className="text-lg md:text-xl font-semibold mb-3 leading-snug">
                 {reason.title}
               </h3>
 
-              <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+              <p className="text-gray-700 text-sm md:text-base leading-relaxed max-w-sm mx-auto">
                 {reason.description}
               </p>
             </div>
@@ -88,7 +88,7 @@ const WhyChooseUs = ({ onQuoteClick }) => {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-10 md:mt-12">
           <button
             type="button"
             onClick={handleQuoteClick}
