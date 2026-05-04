@@ -38,24 +38,27 @@ const Testimonials = () => {
   };
 
   return (
-    <section id="testimonials" className="bg-white py-20">
-      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
+    <section
+      id="testimonials"
+      className="bg-white py-16 sm:py-18 md:py-20 lg:py-24"
+    >
+      <div className="w-full px-5 sm:px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32">
         {/* Heading */}
-        <div className="mb-14 md:mb-20 text-center">
+        <div className="mb-10 md:mb-14 2xl:mb-20 text-center">
           <div className="flex justify-center items-center gap-3">
             <span
               aria-hidden="true"
-              className="w-10 h-[4px] bg-[#c6a85b]"
+              className="w-8 sm:w-10 h-[4px] bg-[#c6a85b]"
             ></span>
 
-            <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-wide">
               Testimonials
             </h2>
           </div>
         </div>
 
-        {/* Mobile / Tablet Carousel */}
-        <div className="lg:hidden max-w-xl mx-auto">
+        {/* Mobile / Tablet / Small Desktop Carousel */}
+        <div className="2xl:hidden max-w-md sm:max-w-xl md:max-w-2xl mx-auto">
           <div aria-live="polite">
             <TestimonialCard item={testimonials[activeIndex]} />
           </div>
@@ -77,7 +80,9 @@ const Testimonials = () => {
                   type="button"
                   onClick={() => setActiveIndex(index)}
                   className={`h-2.5 rounded-full transition ${
-                    activeIndex === index ? "w-6 bg-[#c6a85b]" : "w-2.5 bg-gray-300"
+                    activeIndex === index
+                      ? "w-6 bg-[#c6a85b]"
+                      : "w-2.5 bg-gray-300"
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                   aria-current={activeIndex === index ? "true" : undefined}
@@ -96,9 +101,9 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Desktop Cards */}
-        <div className="hidden lg:block max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
+        {/* Wide Desktop Cards */}
+        <div className="hidden 2xl:block max-w-7xl mx-auto">
+          <div className="grid grid-cols-3 gap-16">
             {testimonials.map((item) => (
               <TestimonialCard key={item.name} item={item} />
             ))}
@@ -111,17 +116,17 @@ const Testimonials = () => {
 
 const TestimonialCard = ({ item }) => {
   return (
-    <div className="bg-[#c6a85b] rounded-2xl px-6 md:px-8 py-8 md:py-9 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 h-full flex flex-col">
+    <div className="bg-[#c6a85b] rounded-2xl px-6 sm:px-7 md:px-8 py-8 md:py-9 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 h-full flex flex-col">
       {/* Quote */}
       <div
         aria-hidden="true"
-        className="text-white text-5xl md:text-6xl leading-none font-serif mb-5 md:mb-6"
+        className="text-white text-4xl sm:text-5xl md:text-6xl leading-none font-serif mb-5 md:mb-6"
       >
         “
       </div>
 
       {/* Text */}
-      <p className="text-black text-base md:text-lg leading-relaxed mb-8 md:mb-10 flex-grow">
+      <p className="text-black text-base sm:text-lg leading-relaxed mb-8 md:mb-10 flex-grow">
         {item.text}
       </p>
 
@@ -129,20 +134,20 @@ const TestimonialCard = ({ item }) => {
       <div aria-hidden="true" className="h-[2px] bg-white mb-4"></div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-4 min-w-0">
           <img
             src={item.avatar}
             alt={item.name}
             loading="lazy"
-            className="w-14 h-14 rounded-full bg-white object-cover border-2 border-white shrink-0"
+            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white object-cover border-2 border-white shrink-0"
           />
 
           <div className="min-w-0">
-            <p className="text-black text-base md:text-lg font-semibold truncate">
+            <p className="text-black text-base md:text-lg font-semibold leading-snug">
               {item.name}
             </p>
-            <p className="text-black/70 text-xs md:text-sm">
+            <p className="text-black/70 text-xs md:text-sm leading-snug">
               {item.service}
             </p>
           </div>
