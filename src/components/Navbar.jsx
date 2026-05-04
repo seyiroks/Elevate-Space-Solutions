@@ -40,9 +40,7 @@ const Navbar = ({ onQuoteClick }) => {
 
   useEffect(() => {
     const handleEsc = (e) => {
-      if (e.key === "Escape") {
-        setIsOpen(false);
-      }
+      if (e.key === "Escape") setIsOpen(false);
     };
 
     window.addEventListener("keydown", handleEsc);
@@ -74,7 +72,6 @@ const Navbar = ({ onQuoteClick }) => {
 
       for (const id of sectionIds) {
         const section = document.getElementById(id);
-
         if (!section) continue;
 
         const sectionTop = section.offsetTop;
@@ -97,21 +94,21 @@ const Navbar = ({ onQuoteClick }) => {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white/75 backdrop-blur-md border-b border-black/5 shadow-sm">
-      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32 py-5 flex items-center justify-between">
+    <header className="fixed top-0 left-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-black/5 shadow-sm">
+      <div className="w-full px-5 sm:px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32 py-4 md:py-5 flex items-center justify-between">
         {/* Logo */}
         <button
           type="button"
           onClick={() => scrollToSection("home")}
-          className="text-xs sm:text-sm tracking-wide whitespace-nowrap text-left text-black hover:opacity-70 transition"
+          className="text-xs sm:text-sm md:text-[15px] tracking-wide whitespace-nowrap text-left text-black hover:opacity-70 transition"
           aria-label="Go to homepage"
         >
           ELEVATE SPACE <span className="font-bold">SOLUTIONS</span>
         </button>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10 lg:gap-20">
-          <nav className="flex items-center gap-8 lg:gap-20 text-sm font-medium text-gray-800">
+        {/* Desktop / Large Tablet Nav */}
+        <div className="hidden lg:flex items-center gap-8 xl:gap-12 2xl:gap-16">
+          <nav className="flex items-center gap-7 xl:gap-10 2xl:gap-14 text-sm font-medium text-gray-800">
             {navLinks.map((link) => (
               <button
                 key={link.id}
@@ -131,16 +128,16 @@ const Navbar = ({ onQuoteClick }) => {
           <button
             type="button"
             onClick={handleQuoteClick}
-            className="bg-primary text-white px-6 py-2 rounded-lg shadow-md hover:translate-y-[2px] hover:shadow-sm transition whitespace-nowrap"
+            className="bg-primary text-white px-5 xl:px-6 py-2.5 rounded-lg shadow-md hover:translate-y-[2px] hover:shadow-sm transition whitespace-nowrap"
           >
             Get a Quote
           </button>
         </div>
 
-        {/* Mobile Toggle */}
+        {/* Mobile / Tablet Portrait Toggle */}
         <button
           type="button"
-          className="md:hidden text-black relative z-50"
+          className="lg:hidden text-black relative z-50"
           onClick={() => setIsOpen((prev) => !prev)}
           aria-label="Toggle navigation menu"
           aria-expanded={isOpen}
@@ -149,17 +146,17 @@ const Navbar = ({ onQuoteClick }) => {
         </button>
       </div>
 
-      {/* Mobile Menu + Outside Click Backdrop */}
+      {/* Mobile / Tablet Menu */}
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
-          className="md:hidden fixed inset-0 z-40 bg-black/30"
+          className="lg:hidden fixed inset-0 z-40 bg-black/30"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="absolute top-[76px] left-0 w-full bg-white/95 backdrop-blur-md border-t border-gray-200 px-6 py-6 shadow-lg"
+            className="absolute top-[72px] md:top-[80px] left-0 w-full bg-white/95 backdrop-blur-md border-t border-gray-200 px-5 sm:px-6 md:px-10 py-6 md:py-8 shadow-lg"
           >
-            <nav className="flex flex-col gap-5 text-base font-medium text-gray-800">
+            <nav className="flex flex-col gap-5 md:gap-6 text-base md:text-lg font-medium text-gray-800">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
@@ -179,7 +176,7 @@ const Navbar = ({ onQuoteClick }) => {
             <button
               type="button"
               onClick={handleQuoteClick}
-              className="mt-6 w-full bg-primary text-white px-6 py-3 rounded-lg shadow-md hover:translate-y-[2px] hover:shadow-sm transition"
+              className="mt-7 w-full sm:w-auto bg-primary text-white px-6 py-3 rounded-lg shadow-md hover:translate-y-[2px] hover:shadow-sm transition"
             >
               Get a Quote
             </button>
