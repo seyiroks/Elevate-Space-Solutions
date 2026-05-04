@@ -60,21 +60,15 @@ const Transformation = () => {
   return (
     <section id="work" className="bg-white py-20 overflow-hidden">
       <div className="w-full max-w-full px-6 md:px-12 lg:px-20 xl:px-32">
+        
         {/* Heading */}
         <div className="mb-14 md:mb-20 text-center">
-          <div className="flex justify-center items-center gap-3 max-w-full">
-            <span
-              aria-hidden="true"
-              className="w-10 h-[4px] bg-[#c6a85b] shrink-0"
-            ></span>
-
-            <h2 className="min-w-0 text-3xl md:text-4xl font-bold uppercase tracking-wide leading-tight">
-              Real Results, <br />
-              <span className="md:whitespace-nowrap">
-                Real Transformation
-              </span>
-            </h2>
-          </div>
+          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide leading-tight">
+            Real Results, <br />
+            <span className="md:whitespace-nowrap">
+              Real Transformation
+            </span>
+          </h2>
 
           <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
             Slide across the image to compare the space before and after our
