@@ -30,10 +30,12 @@ const Transformation = () => {
     const handleKey = (e) => {
       if (e.key === "ArrowLeft") {
         setPosition((prev) => Math.max(prev - 2, 0));
+        setHasInteracted(true);
       }
 
       if (e.key === "ArrowRight") {
         setPosition((prev) => Math.min(prev + 2, 100));
+        setHasInteracted(true);
       }
     };
 
@@ -58,19 +60,21 @@ const Transformation = () => {
   }, [hasInteracted]);
 
   return (
-    <section id="work" className="bg-white py-20 overflow-hidden">
-      <div className="w-full max-w-full px-6 md:px-12 lg:px-20 xl:px-32">
-        
+    <section
+      id="work"
+      className="bg-white py-16 sm:py-18 md:py-20 lg:py-24 overflow-hidden"
+    >
+      <div className="w-full px-5 sm:px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32">
         {/* Heading */}
-        <div className="mb-14 md:mb-20 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide leading-tight">
+        <div className="mb-10 md:mb-14 lg:mb-20 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-wide leading-tight">
             Real Results, <br />
-            <span className="md:whitespace-nowrap">
+            <span className="sm:whitespace-nowrap">
               Real Transformation
             </span>
           </h2>
 
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-gray-600 max-w-xl md:max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
             Slide across the image to compare the space before and after our
             transformation work.
           </p>
@@ -80,7 +84,7 @@ const Transformation = () => {
         <div className="flex justify-center">
           <div
             ref={containerRef}
-            className={`relative w-full max-w-6xl h-[320px] sm:h-[420px] md:h-auto md:aspect-[1199/807] bg-black shadow-xl rounded-2xl overflow-hidden select-none touch-none ${
+            className={`relative w-full max-w-6xl h-[300px] sm:h-[400px] md:h-[520px] lg:h-auto lg:aspect-[1199/807] bg-black shadow-xl rounded-2xl overflow-hidden select-none touch-none ${
               dragging ? "cursor-grabbing" : "cursor-grab"
             }`}
             onMouseDown={startDrag}
@@ -89,14 +93,21 @@ const Transformation = () => {
             onMouseMove={(e) => dragging && updatePosition(e.clientX)}
             onTouchStart={startDrag}
             onTouchEnd={stopDrag}
+            onTouchCancel={stopDrag}
             onTouchMove={(e) => updatePosition(e.touches[0].clientX)}
+            role="slider"
+            aria-label="Before and after image comparison slider"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round(position)}
+            tabIndex={0}
           >
             {/* AFTER */}
             <div className="absolute inset-0">
               <img
                 src="/after.jpg"
                 alt="After transformation"
-                className="w-full h-full object-cover md:object-contain"
+                className="w-full h-full object-cover lg:object-contain"
                 draggable={false}
                 onDragStart={(e) => e.preventDefault()}
               />
@@ -118,7 +129,7 @@ const Transformation = () => {
               <img
                 src="/before.jpg"
                 alt="Before transformation"
-                className="w-full h-full object-cover md:object-contain"
+                className="w-full h-full object-cover lg:object-contain"
                 draggable={false}
                 onDragStart={(e) => e.preventDefault()}
               />
