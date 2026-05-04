@@ -37,7 +37,10 @@ const Contact = () => {
         {/* Heading */}
         <div className="mb-14 md:mb-20 text-center">
           <div className="flex justify-center items-center gap-3">
-            <span className="w-10 h-[4px] bg-[#c6a85b]"></span>
+            <span
+              aria-hidden="true"
+              className="w-10 h-[4px] bg-[#c6a85b]"
+            ></span>
 
             <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide">
               Contact Us
@@ -48,7 +51,7 @@ const Contact = () => {
         {/* Content */}
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
           {/* Left Card */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-md px-6 md:px-12 py-10 md:py-16">
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 px-6 md:px-12 py-10 md:py-16">
             <h3 className="text-2xl md:text-3xl font-bold text-[#c6a85b] mb-6 md:mb-8 text-center md:text-left">
               Let’s Work Together
             </h3>
@@ -60,11 +63,16 @@ const Contact = () => {
             </p>
 
             <div className="space-y-8 md:space-y-10">
+              {/* Phone */}
               <a
                 href="tel:07437851843"
+                aria-label="Call us on 07437 851843"
                 className="flex items-center gap-4 md:gap-5 group"
               >
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0 group-hover:bg-[#c6a85b] transition">
+                <div
+                  aria-hidden="true"
+                  className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0 group-hover:bg-[#c6a85b] transition"
+                >
                   <Phone
                     size={24}
                     className="text-[#c6a85b] group-hover:text-white transition"
@@ -79,13 +87,18 @@ const Contact = () => {
                 </div>
               </a>
 
-              <div className="h-px bg-gray-200"></div>
+              <div aria-hidden="true" className="h-px bg-gray-200"></div>
 
+              {/* Email */}
               <a
                 href="mailto:clean@kpelevatespacesolutionscom.com"
+                aria-label="Email us"
                 className="flex items-center gap-4 md:gap-5 group"
               >
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0 group-hover:bg-[#c6a85b] transition">
+                <div
+                  aria-hidden="true"
+                  className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0 group-hover:bg-[#c6a85b] transition"
+                >
                   <Mail
                     size={24}
                     className="text-[#c6a85b] group-hover:text-white transition"
@@ -94,25 +107,27 @@ const Contact = () => {
 
                 <div className="min-w-0">
                   <p className="text-base md:text-xl">Email us</p>
-                  <p className="text-base md:text-xl font-bold break-words">
+                  <p className="text-base md:text-xl font-bold break-all">
                     clean@kpelevatespacesolutionscom.com
                   </p>
                 </div>
               </a>
 
-              <div className="h-px bg-gray-200"></div>
+              <div aria-hidden="true" className="h-px bg-gray-200"></div>
 
+              {/* Location */}
               <div className="flex items-center gap-4 md:gap-5">
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0">
+                <div
+                  aria-hidden="true"
+                  className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0"
+                >
                   <MapPin size={24} className="text-[#c6a85b]" />
                 </div>
 
                 <div>
                   <p className="text-base md:text-xl">Service Area</p>
                   <p className="text-base md:text-xl font-bold leading-snug">
-                    Leicester &
-                    <br />
-                    Surrounding Areas
+                    Leicester & Surrounding Areas
                   </p>
                 </div>
               </div>
@@ -122,7 +137,7 @@ const Contact = () => {
           {/* Right Card */}
           <form
             onSubmit={handleSubmit}
-            className="bg-white rounded-2xl border border-gray-100 shadow-md px-6 md:px-12 py-10 md:py-16"
+            className="bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 px-6 md:px-12 py-10 md:py-16"
           >
             <h3 className="text-2xl md:text-3xl font-bold text-[#c6a85b] mb-8 md:mb-10 text-center md:text-left">
               Get in Touch with Us
@@ -137,9 +152,11 @@ const Contact = () => {
                   name="name"
                   type="text"
                   required
+                  autoComplete="name"
+                  placeholder="Your name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full border-0 border-b-2 border-black pb-2 focus:outline-none focus:border-[#c6a85b]"
+                  className="w-full border-0 border-b-2 border-black pb-2 placeholder:text-gray-400 focus:outline-none focus:border-[#c6a85b]"
                 />
               </div>
 
@@ -151,9 +168,11 @@ const Contact = () => {
                   name="phone"
                   type="tel"
                   required
+                  autoComplete="tel"
+                  placeholder="Your phone number"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full border-0 border-b-2 border-black pb-2 focus:outline-none focus:border-[#c6a85b]"
+                  className="w-full border-0 border-b-2 border-black pb-2 placeholder:text-gray-400 focus:outline-none focus:border-[#c6a85b]"
                 />
               </div>
             </div>
@@ -186,9 +205,10 @@ const Contact = () => {
                 name="message"
                 rows="4"
                 required
+                placeholder="Tell us about your project..."
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full border-0 border-b-2 border-black resize-none focus:outline-none focus:border-[#c6a85b]"
+                className="w-full border-0 border-b-2 border-black resize-none placeholder:text-gray-400 focus:outline-none focus:border-[#c6a85b]"
               ></textarea>
             </div>
 

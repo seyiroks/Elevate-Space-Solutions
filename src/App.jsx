@@ -28,37 +28,27 @@ function App() {
 
   return (
     <>
-      <Navbar onQuoteClick={() => openQuoteModal()} />
+      <Navbar onQuoteClick={openQuoteModal} />
 
       <section id="home">
-        <Hero onQuoteClick={() => openQuoteModal()} />
+        <Hero onQuoteClick={openQuoteModal} />
       </section>
 
-      <section id="about">
-        <TrustBar />
-      </section>
+      <TrustBar />
 
       <Services onQuoteClick={openQuoteModal} />
 
       <BeforeAfterSlider />
 
-      <section id="why-choose-us">
-        <WhyChooseUs onQuoteClick={() => openQuoteModal()} />
-      </section>
+      <WhyChooseUs onQuoteClick={openQuoteModal} />
 
-      <section id="process">
-        <HowItWorks onQuoteClick={() => openQuoteModal()} />
-      </section>
+      <HowItWorks onQuoteClick={openQuoteModal} />
 
-      <section id="testimonials">
-        <Testimonials />
-      </section>
+      <Testimonials />
 
-      <CTA onQuoteClick={() => openQuoteModal()} />
+      <CTA onQuoteClick={openQuoteModal} />
 
-      <section id="contact">
-        <Contact />
-      </section>
+      <Contact />
 
       <Footer />
 

@@ -24,13 +24,23 @@ const reasons = [
 ];
 
 const WhyChooseUs = ({ onQuoteClick }) => {
+  const handleQuoteClick = () => {
+    if (onQuoteClick) {
+      onQuoteClick();
+    }
+  };
+
   return (
-    <section className="relative py-20 text-black overflow-hidden">
+    <section
+      id="why-choose-us"
+      className="relative py-20 text-black overflow-hidden"
+    >
       {/* Background */}
-      <div className="absolute inset-0">
+      <div aria-hidden="true" className="absolute inset-0">
         <img
           src="/why-choose-us.jpg"
-          alt="Beautiful interior space"
+          alt=""
+          loading="lazy"
           className="w-full h-full object-cover object-[center_90%] scale-105 blur-[4px]"
         />
         <div className="absolute inset-0 bg-white/85 md:bg-white/80"></div>
@@ -41,7 +51,10 @@ const WhyChooseUs = ({ onQuoteClick }) => {
         {/* Heading */}
         <div className="mb-14 md:mb-20 text-center">
           <div className="flex justify-center items-center gap-3">
-            <span className="w-10 h-[4px] bg-[#c6a85b]"></span>
+            <span
+              aria-hidden="true"
+              className="w-10 h-[4px] bg-[#c6a85b]"
+            ></span>
 
             <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide">
               Why Choose Us
@@ -56,7 +69,10 @@ const WhyChooseUs = ({ onQuoteClick }) => {
               key={reason.title}
               className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 md:p-7 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 text-center"
             >
-              <div className="w-14 h-14 mx-auto mb-5 rounded-full bg-[#c6a85b]/15 flex items-center justify-center">
+              <div
+                aria-hidden="true"
+                className="w-14 h-14 mx-auto mb-5 rounded-full bg-[#c6a85b]/15 flex items-center justify-center"
+              >
                 <CheckCircle size={28} className="text-[#c6a85b]" />
               </div>
 
@@ -74,7 +90,8 @@ const WhyChooseUs = ({ onQuoteClick }) => {
         {/* CTA */}
         <div className="text-center mt-12">
           <button
-            onClick={onQuoteClick}
+            type="button"
+            onClick={handleQuoteClick}
             className="bg-[#c6a85b] text-white px-8 py-3 rounded-lg shadow-md hover:translate-y-[2px] hover:shadow-sm transition"
           >
             Get a Free Quote

@@ -39,13 +39,23 @@ const services = [
 ];
 
 const Services = ({ onQuoteClick }) => {
+  const handleQuoteClick = (serviceTitle) => {
+    if (onQuoteClick) {
+      onQuoteClick(serviceTitle);
+    }
+  };
+
   return (
     <section id="services" className="bg-[#efefef] py-20">
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
         {/* Heading */}
         <div className="text-center mb-12 md:mb-16">
           <div className="flex justify-center items-center gap-3">
-            <span className="w-10 h-[4px] bg-[#c6a85b]"></span>
+            <span
+              aria-hidden="true"
+              className="w-10 h-[4px] bg-[#c6a85b]"
+            ></span>
+
             <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide">
               Our Services
             </h2>
@@ -63,13 +73,14 @@ const Services = ({ onQuoteClick }) => {
             {services.map((service) => (
               <div
                 key={service.title}
-                className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 h-full flex flex-col overflow-hidden"
+                className="group bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 h-full flex flex-col overflow-hidden"
               >
                 {/* Image */}
                 <div className="overflow-hidden rounded-t-2xl">
                   <img
                     src={service.image}
                     alt={service.alt}
+                    loading="lazy"
                     className="w-full h-48 md:h-52 object-cover group-hover:scale-105 transition duration-500"
                   />
                 </div>
@@ -86,9 +97,14 @@ const Services = ({ onQuoteClick }) => {
 
                   {/* Features */}
                   <ul className="mb-6 space-y-2 text-sm text-gray-700">
-                    {service.features.map((item, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <span className="text-[#c6a85b] mt-[2px]">✓</span>
+                    {service.features.map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <span
+                          aria-hidden="true"
+                          className="text-[#c6a85b] mt-[2px]"
+                        >
+                          ✓
+                        </span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -96,8 +112,10 @@ const Services = ({ onQuoteClick }) => {
 
                   {/* CTA */}
                   <button
-                    onClick={() => onQuoteClick(service.title)}
-                    className="text-left text-[#c6a85b] font-semibold text-sm hover:translate-x-1 transition"
+                    type="button"
+                    onClick={() => handleQuoteClick(service.title)}
+                    className="mt-auto text-left text-[#c6a85b] font-semibold text-sm hover:translate-x-1 transition"
+                    aria-label={`Get a quote for ${service.title}`}
                   >
                     Get Quote →
                   </button>

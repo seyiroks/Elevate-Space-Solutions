@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
+const initialFormData = {
+  name: "",
+  phone: "",
+  service: "",
+  details: "",
+};
+
 const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    service: "",
-    details: "",
-  });
+  const [formData, setFormData] = useState(initialFormData);
 
   useEffect(() => {
     if (isOpen) {
-      setFormData((prev) => ({
-        ...prev,
-        service: selectedService || prev.service,
-      }));
+      setFormData({
+        ...initialFormData,
+        service: selectedService || "",
+      });
     }
   }, [isOpen, selectedService]);
 
@@ -48,13 +50,7 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
 
     alert("Quote request submitted successfully!");
 
-    setFormData({
-      name: "",
-      phone: "",
-      service: "",
-      details: "",
-    });
-
+    setFormData(initialFormData);
     onClose();
   };
 
@@ -62,16 +58,18 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
 
   return (
     <div
-      onClick={onClose}
+      onMouseDown={onClose}
       className="fixed inset-0 z-[100] bg-black/50 flex items-center justify-center px-6 py-8 overflow-y-auto"
     >
-      {/* Modal */}
       <div
-        onClick={(e) => e.stopPropagation()}
-        className="relative bg-white w-full max-w-2xl rounded-2xl shadow-xl px-6 md:px-10 py-10 my-auto"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="quote-modal-title"
+        onMouseDown={(e) => e.stopPropagation()}
+        className="relative bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-xl px-6 md:px-10 py-10 my-auto"
       >
-        {/* Close Button */}
         <button
+          type="button"
           onClick={onClose}
           className="absolute top-5 right-5 text-black hover:text-[#c6a85b] transition"
           aria-label="Close quote form"
@@ -79,49 +77,60 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
           <X size={26} />
         </button>
 
-        <h2 className="text-2xl md:text-3xl font-bold text-[#c6a85b] text-center mb-8">
+        <h2
+          id="quote-modal-title"
+          className="text-2xl md:text-3xl font-bold text-[#c6a85b] text-center mb-3"
+        >
           Get a Free Quote
         </h2>
+
+        <p className="text-center text-gray-600 mb-8">
+          Tell us what you need and we’ll get back to you with a tailored quote.
+        </p>
 
         <form onSubmit={handleSubmit} className="space-y-8">
           <div className="grid sm:grid-cols-2 gap-8">
             <div>
-              <label htmlFor="name" className="block font-bold mb-4">
+              <label htmlFor="quote-name" className="block font-bold mb-4">
                 Name
               </label>
               <input
-                id="name"
+                id="quote-name"
                 name="name"
                 type="text"
                 required
+                autoComplete="name"
+                placeholder="Your name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full border-0 border-b-2 border-black pb-2 focus:outline-none focus:border-[#c6a85b]"
+                className="w-full border-0 border-b-2 border-black pb-2 placeholder:text-gray-400 focus:outline-none focus:border-[#c6a85b]"
               />
             </div>
 
             <div>
-              <label htmlFor="phone" className="block font-bold mb-4">
+              <label htmlFor="quote-phone" className="block font-bold mb-4">
                 Phone
               </label>
               <input
-                id="phone"
+                id="quote-phone"
                 name="phone"
                 type="tel"
                 required
+                autoComplete="tel"
+                placeholder="Your phone number"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full border-0 border-b-2 border-black pb-2 focus:outline-none focus:border-[#c6a85b]"
+                className="w-full border-0 border-b-2 border-black pb-2 placeholder:text-gray-400 focus:outline-none focus:border-[#c6a85b]"
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="service" className="block font-bold mb-4">
+            <label htmlFor="quote-service" className="block font-bold mb-4">
               Service Required
             </label>
             <select
-              id="service"
+              id="quote-service"
               name="service"
               required
               value={formData.service}
@@ -138,17 +147,18 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
           </div>
 
           <div>
-            <label htmlFor="details" className="block font-bold mb-6">
+            <label htmlFor="quote-details" className="block font-bold mb-6">
               Project Details
             </label>
             <textarea
-              id="details"
+              id="quote-details"
               name="details"
               rows="4"
               required
+              placeholder="Tell us about the property, service needed, timeline, or any important details..."
               value={formData.details}
               onChange={handleChange}
-              className="w-full border-0 border-b-2 border-black resize-none focus:outline-none focus:border-[#c6a85b]"
+              className="w-full border-0 border-b-2 border-black resize-none placeholder:text-gray-400 focus:outline-none focus:border-[#c6a85b]"
             ></textarea>
           </div>
 

@@ -26,12 +26,15 @@ const trustItems = [
 
 const TrustBar = () => {
   return (
-    <section className="bg-white py-20 overflow-hidden">
+    <section id="about" className="bg-white py-20 overflow-hidden">
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
         {/* Heading */}
         <div className="mb-14 md:mb-20 text-center">
           <div className="flex justify-center items-center gap-3">
-            <span className="w-10 h-[4px] bg-[#c6a85b]"></span>
+            <span
+              aria-hidden="true"
+              className="w-10 h-[4px] bg-[#c6a85b]"
+            ></span>
 
             <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide leading-tight">
               How We Make <br className="sm:hidden" />
@@ -48,9 +51,12 @@ const TrustBar = () => {
             return (
               <div
                 key={item.title}
-                className="bg-[#f7f7f7] rounded-2xl px-6 py-7 shadow-sm hover:shadow-md transition duration-300"
+                className="bg-[#f7f7f7] rounded-2xl px-6 py-7 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 text-center"
               >
-                <div className="w-14 h-14 rounded-full bg-[#c6a85b] flex items-center justify-center mb-5">
+                <div
+                  aria-hidden="true"
+                  className="w-14 h-14 mx-auto rounded-full bg-[#c6a85b] flex items-center justify-center mb-5"
+                >
                   <Icon className="text-white" size={28} strokeWidth={1.8} />
                 </div>
 
@@ -69,7 +75,10 @@ const TrustBar = () => {
         {/* Desktop Timeline */}
         <div className="relative hidden lg:block max-w-7xl mx-auto h-[380px]">
           {/* Line */}
-          <div className="absolute top-1/2 left-0 w-full h-[5px] bg-black -translate-y-1/2"></div>
+          <div
+            aria-hidden="true"
+            className="absolute top-1/2 left-0 w-full h-[5px] bg-black/80 -translate-y-1/2"
+          ></div>
 
           <div className="grid grid-cols-4 h-full relative">
             {trustItems.map((item, index) => {
@@ -86,6 +95,7 @@ const TrustBar = () => {
                   >
                     <div className="flex justify-center mb-4">
                       <Icon
+                        aria-hidden="true"
                         className="text-[#c6a85b]"
                         size={42}
                         strokeWidth={1.8}
@@ -100,7 +110,10 @@ const TrustBar = () => {
                   </div>
 
                   {/* Circle */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-[#c6a85b] rounded-full z-10 shadow-md"></div>
+                  <div
+                    aria-hidden="true"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-[#c6a85b] rounded-full z-10 shadow-md"
+                  ></div>
                 </div>
               );
             })}

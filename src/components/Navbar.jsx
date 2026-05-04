@@ -32,7 +32,10 @@ const Navbar = ({ onQuoteClick }) => {
 
   const handleQuoteClick = () => {
     setIsOpen(false);
-    onQuoteClick();
+
+    if (onQuoteClick) {
+      onQuoteClick();
+    }
   };
 
   useEffect(() => {
@@ -56,23 +59,33 @@ const Navbar = ({ onQuoteClick }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sectionIds = ["home", "services", "work", "about", "contact"];
-      const scrollPosition = window.scrollY + 120;
+      const sectionIds = [
+        "home",
+        "about",
+        "services",
+        "work",
+        "why-choose-us",
+        "process",
+        "testimonials",
+        "contact",
+      ];
+
+      const scrollPosition = window.scrollY + 140;
 
       for (const id of sectionIds) {
         const section = document.getElementById(id);
 
-        if (section) {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
+        if (!section) continue;
 
-          if (
-            scrollPosition >= sectionTop &&
-            scrollPosition < sectionTop + sectionHeight
-          ) {
-            setActiveSection(id);
-            break;
-          }
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+
+        if (
+          scrollPosition >= sectionTop &&
+          scrollPosition < sectionTop + sectionHeight
+        ) {
+          setActiveSection(id);
+          break;
         }
       }
     };
@@ -84,11 +97,14 @@ const Navbar = ({ onQuoteClick }) => {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 w-full z-50 bg-white/75 backdrop-blur-md border-b border-black/5 shadow-sm">
       <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32 py-5 flex items-center justify-between">
+        {/* Logo */}
         <button
+          type="button"
           onClick={() => scrollToSection("home")}
           className="text-xs sm:text-sm tracking-wide whitespace-nowrap text-left text-black hover:opacity-70 transition"
+          aria-label="Go to homepage"
         >
           ELEVATE SPACE <span className="font-bold">SOLUTIONS</span>
         </button>
@@ -99,6 +115,7 @@ const Navbar = ({ onQuoteClick }) => {
             {navLinks.map((link) => (
               <button
                 key={link.id}
+                type="button"
                 onClick={() => scrollToSection(link.id)}
                 className={`transition ${
                   activeSection === link.id
@@ -112,6 +129,7 @@ const Navbar = ({ onQuoteClick }) => {
           </nav>
 
           <button
+            type="button"
             onClick={handleQuoteClick}
             className="bg-primary text-white px-6 py-2 rounded-lg shadow-md hover:translate-y-[2px] hover:shadow-sm transition whitespace-nowrap"
           >
@@ -121,9 +139,11 @@ const Navbar = ({ onQuoteClick }) => {
 
         {/* Mobile Toggle */}
         <button
+          type="button"
           className="md:hidden text-black relative z-50"
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => setIsOpen((prev) => !prev)}
           aria-label="Toggle navigation menu"
+          aria-expanded={isOpen}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -137,12 +157,13 @@ const Navbar = ({ onQuoteClick }) => {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="absolute top-[72px] left-0 w-full bg-white/95 backdrop-blur-md border-t border-gray-200 px-6 py-6"
+            className="absolute top-[76px] left-0 w-full bg-white/95 backdrop-blur-md border-t border-gray-200 px-6 py-6 shadow-lg"
           >
             <nav className="flex flex-col gap-5 text-base font-medium text-gray-800">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
+                  type="button"
                   onClick={() => scrollToSection(link.id)}
                   className={`text-left transition ${
                     activeSection === link.id
@@ -156,8 +177,9 @@ const Navbar = ({ onQuoteClick }) => {
             </nav>
 
             <button
+              type="button"
               onClick={handleQuoteClick}
-              className="mt-6 w-full bg-primary text-white px-6 py-3 rounded-lg shadow-md"
+              className="mt-6 w-full bg-primary text-white px-6 py-3 rounded-lg shadow-md hover:translate-y-[2px] hover:shadow-sm transition"
             >
               Get a Quote
             </button>

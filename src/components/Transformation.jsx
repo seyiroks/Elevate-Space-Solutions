@@ -13,8 +13,7 @@ const Transformation = () => {
     const rect = containerRef.current.getBoundingClientRect();
     let newPos = ((clientX - rect.left) / rect.width) * 100;
 
-    if (newPos < 0) newPos = 0;
-    if (newPos > 100) newPos = 100;
+    newPos = Math.max(0, Math.min(100, newPos));
 
     setPosition(newPos);
   };
@@ -28,6 +27,22 @@ const Transformation = () => {
     setDragging(false);
   };
 
+  // Keyboard support
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === "ArrowLeft") {
+        setPosition((prev) => Math.max(prev - 2, 0));
+      }
+      if (e.key === "ArrowRight") {
+        setPosition((prev) => Math.min(prev + 2, 100));
+      }
+    };
+
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, []);
+
+  // Auto demo animation
   useEffect(() => {
     if (hasInteracted) return;
 
@@ -37,7 +52,6 @@ const Transformation = () => {
       setPosition((prev) => {
         if (prev >= 65) direction = -1;
         if (prev <= 35) direction = 1;
-
         return prev + direction * 0.5;
       });
     }, 40);
@@ -51,7 +65,10 @@ const Transformation = () => {
         {/* Heading */}
         <div className="mb-14 md:mb-20 text-center">
           <div className="flex justify-center items-center gap-3">
-            <span className="w-10 h-[4px] bg-[#c6a85b]"></span>
+            <span
+              aria-hidden="true"
+              className="w-10 h-[4px] bg-[#c6a85b]"
+            ></span>
 
             <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide leading-tight">
               Real Results, <br />
@@ -69,7 +86,9 @@ const Transformation = () => {
         <div className="flex justify-center">
           <div
             ref={containerRef}
-            className="relative w-full max-w-6xl h-[320px] sm:h-[420px] md:h-auto md:aspect-[1199/807] bg-black shadow-xl select-none touch-none overflow-hidden"
+            className={`relative w-full max-w-6xl h-[320px] sm:h-[420px] md:h-auto md:aspect-[1199/807] bg-black shadow-xl rounded-2xl overflow-hidden select-none touch-none ${
+              dragging ? "cursor-grabbing" : "cursor-grab"
+            }`}
             onMouseDown={startDrag}
             onMouseUp={stopDrag}
             onMouseLeave={stopDrag}
@@ -117,7 +136,8 @@ const Transformation = () => {
 
             {/* Divider */}
             <div
-              className={`absolute top-0 bottom-0 w-[2px] bg-white ${
+              aria-hidden="true"
+              className={`absolute top-0 bottom-0 w-[3px] bg-white/90 ${
                 dragging ? "" : "transition-all duration-200"
               }`}
               style={{
@@ -128,7 +148,8 @@ const Transformation = () => {
 
             {/* Handle */}
             <div
-              className={`absolute flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-white border-[3px] md:border-4 border-[#c6a85b] rounded-full shadow-md cursor-col-resize hover:scale-105 hover:shadow-lg transition ${
+              aria-hidden="true"
+              className={`absolute flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-white border-[3px] md:border-4 border-[#c6a85b] rounded-full shadow-md hover:scale-105 hover:shadow-lg transition ${
                 dragging ? "scale-105 shadow-lg" : ""
               }`}
               style={{
