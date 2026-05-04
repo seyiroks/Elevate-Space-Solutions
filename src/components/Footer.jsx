@@ -24,30 +24,30 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative py-20 overflow-hidden text-black">
+    <footer className="relative py-16 sm:py-18 md:py-20 lg:py-24 overflow-hidden text-black">
       {/* Background */}
-      <div aria-hidden="true" className="absolute inset-0">
+      <div aria-hidden="true" className="absolute inset-0 z-0">
         <img
           src="/footer-bg.jpg"
           alt=""
           loading="lazy"
           className="w-full h-full object-cover object-[70%_100%] md:object-[center_100%] scale-105 blur-[2px]"
         />
-        <div className="absolute inset-0 bg-white/80 md:bg-white/75"></div>
+        <div className="absolute inset-0 bg-white/85 md:bg-white/80 lg:bg-white/75"></div>
       </div>
 
       {/* Content */}
-      <div className="relative w-full px-6 md:px-12 lg:px-20 xl:px-32">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-start mb-16 md:mb-20 text-center md:text-left">
+      <div className="relative z-10 w-full px-5 sm:px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32">
+        <div className="max-w-md sm:max-w-xl md:max-w-3xl xl:max-w-6xl mx-auto grid grid-cols-1 xl:grid-cols-2 gap-10 md:gap-12 xl:gap-20 items-start mb-12 md:mb-16 xl:mb-20 text-center xl:text-left">
           {/* Brand */}
-          <div className="space-y-6 md:space-y-8">
+          <div className="space-y-5 md:space-y-6 xl:space-y-8">
             <button
               type="button"
               onClick={() => scrollToSection("home")}
-              className="text-center md:text-left"
+              className="text-center xl:text-left"
               aria-label="Back to homepage"
             >
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wide hover:text-[#c6a85b] transition">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wide leading-tight hover:text-[#c6a85b] transition">
                 ELEVATE SPACE <span className="font-bold">SOLUTIONS</span>
               </h3>
             </button>
@@ -56,14 +56,14 @@ const Footer = () => {
               Cleaning | Repairs | Design
             </p>
 
-            <div className="space-y-2 md:space-y-4 text-sm md:text-base">
+            <div className="space-y-2 md:space-y-3 text-sm md:text-base">
               <p>Registered in England & Wales</p>
               <p>Company No: 1234567890</p>
             </div>
           </div>
 
           {/* Navigation */}
-          <div className="md:ml-auto">
+          <div className="xl:ml-auto">
             <h4 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6">
               Navigation
             </h4>
