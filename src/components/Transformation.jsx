@@ -14,7 +14,6 @@ const Transformation = () => {
     let newPos = ((clientX - rect.left) / rect.width) * 100;
 
     newPos = Math.max(0, Math.min(100, newPos));
-
     setPosition(newPos);
   };
 
@@ -27,12 +26,12 @@ const Transformation = () => {
     setDragging(false);
   };
 
-  // Keyboard support
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === "ArrowLeft") {
         setPosition((prev) => Math.max(prev - 2, 0));
       }
+
       if (e.key === "ArrowRight") {
         setPosition((prev) => Math.min(prev + 2, 100));
       }
@@ -42,7 +41,6 @@ const Transformation = () => {
     return () => window.removeEventListener("keydown", handleKey);
   }, []);
 
-  // Auto demo animation
   useEffect(() => {
     if (hasInteracted) return;
 
@@ -60,19 +58,21 @@ const Transformation = () => {
   }, [hasInteracted]);
 
   return (
-    <section id="work" className="bg-white py-20">
-      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
+    <section id="work" className="bg-white py-20 overflow-hidden">
+      <div className="w-full max-w-full px-6 md:px-12 lg:px-20 xl:px-32">
         {/* Heading */}
         <div className="mb-14 md:mb-20 text-center">
-          <div className="flex justify-center items-center gap-3">
+          <div className="flex justify-center items-center gap-3 max-w-full">
             <span
               aria-hidden="true"
-              className="w-10 h-[4px] bg-[#c6a85b]"
+              className="w-10 h-[4px] bg-[#c6a85b] shrink-0"
             ></span>
 
-            <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide leading-tight">
+            <h2 className="min-w-0 text-3xl md:text-4xl font-bold uppercase tracking-wide leading-tight">
               Real Results, <br />
-              <span className="whitespace-nowrap">Real Transformation</span>
+              <span className="md:whitespace-nowrap">
+                Real Transformation
+              </span>
             </h2>
           </div>
 
