@@ -53,11 +53,12 @@ const TrustBar = () => {
                 key={item.title}
                 className="bg-[#f7f7f7] rounded-2xl px-5 sm:px-6 md:px-7 py-7 md:py-8 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300 text-center"
               >
+                {/* FIXED ICON CIRCLE */}
                 <div
                   aria-hidden="true"
-                  className="w-13 h-13 sm:w-14 sm:h-14 mx-auto rounded-full bg-[#c6a85b] flex items-center justify-center mb-5"
+                  className="w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full bg-[#c6a85b] flex items-center justify-center mb-5"
                 >
-                  <Icon className="text-white" size={27} strokeWidth={1.8} />
+                  <Icon className="text-white" size={22} strokeWidth={1.8} />
                 </div>
 
                 <h3 className="font-bold text-lg md:text-xl mb-2 leading-snug">
