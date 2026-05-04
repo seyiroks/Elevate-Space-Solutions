@@ -32,37 +32,37 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-white py-20">
-      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
+    <section id="contact" className="bg-white py-16 sm:py-18 md:py-20 lg:py-24">
+      <div className="w-full px-5 sm:px-6 md:px-10 lg:px-16 xl:px-24 2xl:px-32">
         {/* Heading */}
-        <div className="mb-14 md:mb-20 text-center">
+        <div className="mb-10 md:mb-14 xl:mb-20 text-center">
           <div className="flex justify-center items-center gap-3">
             <span
               aria-hidden="true"
-              className="w-10 h-[4px] bg-[#c6a85b]"
+              className="w-8 sm:w-10 h-[4px] bg-[#c6a85b]"
             ></span>
 
-            <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-wide">
               Contact Us
             </h2>
           </div>
         </div>
 
         {/* Content */}
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
+        <div className="max-w-md sm:max-w-xl md:max-w-3xl xl:max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-2 gap-6 md:gap-8 xl:gap-16">
           {/* Left Card */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 px-6 md:px-12 py-10 md:py-16">
-            <h3 className="text-2xl md:text-3xl font-bold text-[#c6a85b] mb-6 md:mb-8 text-center md:text-left">
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 px-5 sm:px-6 md:px-10 xl:px-12 py-8 sm:py-10 md:py-12 xl:py-16">
+            <h3 className="text-2xl md:text-[1.7rem] xl:text-3xl font-bold text-[#c6a85b] mb-5 md:mb-7 xl:mb-8 text-center xl:text-left">
               Let’s Work Together
             </h3>
 
-            <p className="text-base md:text-xl leading-relaxed mb-8 md:mb-10 text-center md:text-left">
+            <p className="text-base md:text-lg xl:text-xl leading-relaxed mb-8 xl:mb-10 text-center xl:text-left">
               Thank you for your interest in our services.
               <br className="hidden sm:block" />
               We’re excited to hear from you.
             </p>
 
-            <div className="space-y-8 md:space-y-10">
+            <div className="space-y-7 md:space-y-8 xl:space-y-10">
               {/* Phone */}
               <a
                 href="tel:07437851843"
@@ -71,7 +71,7 @@ const Contact = () => {
               >
                 <div
                   aria-hidden="true"
-                  className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0 group-hover:bg-[#c6a85b] transition"
+                  className="w-12 h-12 md:w-14 md:h-14 xl:w-16 xl:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0 group-hover:bg-[#c6a85b] transition"
                 >
                   <Phone
                     size={24}
@@ -80,8 +80,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <p className="text-base md:text-xl">Call us for inquiry</p>
-                  <p className="text-base md:text-xl font-bold">
+                  <p className="text-base md:text-lg xl:text-xl">
+                    Call us for inquiry
+                  </p>
+                  <p className="text-base md:text-lg xl:text-xl font-bold">
                     07437 851843
                   </p>
                 </div>
@@ -97,7 +99,7 @@ const Contact = () => {
               >
                 <div
                   aria-hidden="true"
-                  className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0 group-hover:bg-[#c6a85b] transition"
+                  className="w-12 h-12 md:w-14 md:h-14 xl:w-16 xl:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0 group-hover:bg-[#c6a85b] transition"
                 >
                   <Mail
                     size={24}
@@ -106,8 +108,8 @@ const Contact = () => {
                 </div>
 
                 <div className="min-w-0">
-                  <p className="text-base md:text-xl">Email us</p>
-                  <p className="text-base md:text-xl font-bold break-all">
+                  <p className="text-base md:text-lg xl:text-xl">Email us</p>
+                  <p className="text-sm sm:text-base md:text-lg xl:text-xl font-bold break-words leading-snug">
                     clean@kpelevatespacesolutionscom.com
                   </p>
                 </div>
@@ -119,14 +121,16 @@ const Contact = () => {
               <div className="flex items-center gap-4 md:gap-5">
                 <div
                   aria-hidden="true"
-                  className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0"
+                  className="w-12 h-12 md:w-14 md:h-14 xl:w-16 xl:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0"
                 >
                   <MapPin size={24} className="text-[#c6a85b]" />
                 </div>
 
                 <div>
-                  <p className="text-base md:text-xl">Service Area</p>
-                  <p className="text-base md:text-xl font-bold leading-snug">
+                  <p className="text-base md:text-lg xl:text-xl">
+                    Service Area
+                  </p>
+                  <p className="text-base md:text-lg xl:text-xl font-bold leading-snug">
                     Leicester & Surrounding Areas
                   </p>
                 </div>
@@ -137,15 +141,15 @@ const Contact = () => {
           {/* Right Card */}
           <form
             onSubmit={handleSubmit}
-            className="bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 px-6 md:px-12 py-10 md:py-16"
+            className="bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 px-5 sm:px-6 md:px-10 xl:px-12 py-8 sm:py-10 md:py-12 xl:py-16"
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-[#c6a85b] mb-8 md:mb-10 text-center md:text-left">
+            <h3 className="text-2xl md:text-[1.7rem] xl:text-3xl font-bold text-[#c6a85b] mb-7 md:mb-8 xl:mb-10 text-center xl:text-left">
               Get in Touch with Us
             </h3>
 
-            <div className="grid sm:grid-cols-2 gap-8 md:gap-10 mb-8 md:mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-8 xl:gap-10 mb-8 xl:mb-10">
               <div>
-                <label className="block text-base md:text-xl font-bold mb-4">
+                <label className="block text-base md:text-lg xl:text-xl font-bold mb-3 xl:mb-4">
                   Name
                 </label>
                 <input
@@ -161,7 +165,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label className="block text-base md:text-xl font-bold mb-4">
+                <label className="block text-base md:text-lg xl:text-xl font-bold mb-3 xl:mb-4">
                   Phone
                 </label>
                 <input
@@ -177,8 +181,8 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="mb-8 md:mb-10">
-              <label className="block text-base md:text-xl font-bold mb-4">
+            <div className="mb-8 xl:mb-10">
+              <label className="block text-base md:text-lg xl:text-xl font-bold mb-3 xl:mb-4">
                 Service Required
               </label>
               <select
@@ -197,8 +201,8 @@ const Contact = () => {
               </select>
             </div>
 
-            <div className="mb-8 md:mb-10">
-              <label className="block text-base md:text-xl font-bold mb-4">
+            <div className="mb-8 xl:mb-10">
+              <label className="block text-base md:text-lg xl:text-xl font-bold mb-3 xl:mb-4">
                 Message
               </label>
               <textarea
@@ -214,7 +218,7 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="w-full sm:w-[190px] bg-[#c6a85b] text-white py-3 rounded-lg text-lg md:text-xl font-medium shadow-md hover:translate-y-[2px] hover:shadow-sm transition mx-auto md:mx-0 block"
+              className="w-full sm:w-[190px] bg-[#c6a85b] text-white py-3 rounded-lg text-base md:text-lg xl:text-xl font-medium shadow-md hover:translate-y-[2px] hover:shadow-sm transition mx-auto xl:mx-0 block"
             >
               Submit
             </button>
