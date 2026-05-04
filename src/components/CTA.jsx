@@ -25,7 +25,7 @@ const CTA = ({ onQuoteClick }) => {
       {/* Background */}
       <div aria-hidden="true" className="absolute inset-0 z-0">
         <img
-          src="/cta-bg.jpg"
+          src="/cta-bg.webp"
           alt=""
           loading="lazy"
           className="w-full h-full object-cover object-[70%_100%] md:object-[center_100%] scale-105 blur-[4px]"

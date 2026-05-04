@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { X } from "lucide-react";
+import { CheckCircle, X } from "lucide-react";
 
 const initialFormData = {
   name: "",
@@ -10,6 +10,7 @@ const initialFormData = {
 
 const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
   const [formData, setFormData] = useState(initialFormData);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -17,6 +18,7 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
         ...initialFormData,
         service: selectedService || "",
       });
+      setIsSubmitted(false);
     }
   }, [isOpen, selectedService]);
 
@@ -29,10 +31,12 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
 
     if (isOpen) {
       document.addEventListener("keydown", handleEscClose);
+      document.body.style.overflow = "hidden";
     }
 
     return () => {
       document.removeEventListener("keydown", handleEscClose);
+      document.body.style.overflow = "auto";
     };
   }, [isOpen, onClose]);
 
@@ -43,15 +47,17 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
       ...prev,
       [name]: value,
     }));
+
+    if (isSubmitted) {
+      setIsSubmitted(false);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    alert("Quote request submitted successfully!");
-
+    setIsSubmitted(true);
     setFormData(initialFormData);
-    onClose();
   };
 
   if (!isOpen) return null;
@@ -59,19 +65,19 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
   return (
     <div
       onMouseDown={onClose}
-      className="fixed inset-0 z-[100] bg-black/50 flex items-center justify-center px-6 py-8 overflow-y-auto"
+      className="fixed inset-0 z-[100] bg-black/55 flex items-center justify-center px-5 sm:px-6 md:px-10 py-8 overflow-y-auto"
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="quote-modal-title"
         onMouseDown={(e) => e.stopPropagation()}
-        className="relative bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-xl px-6 md:px-10 py-10 my-auto"
+        className="relative bg-white w-full max-w-md sm:max-w-xl md:max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-xl px-5 sm:px-6 md:px-10 py-9 md:py-10 my-auto"
       >
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-5 right-5 text-black hover:text-[#c6a85b] transition"
+          className="absolute top-5 right-5 text-black hover:text-primary transition"
           aria-label="Close quote form"
         >
           <X size={26} />
@@ -79,17 +85,38 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
 
         <h2
           id="quote-modal-title"
-          className="text-2xl md:text-3xl font-bold text-[#c6a85b] text-center mb-3"
+          className="text-2xl md:text-3xl font-bold text-primary text-center mb-3 pr-8"
         >
           Get a Free Quote
         </h2>
 
-        <p className="text-center text-gray-600 mb-8">
+        <p className="text-center text-gray-600 mb-8 max-w-xl mx-auto leading-relaxed">
           Tell us what you need and we’ll get back to you with a tailored quote.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-8">
-          <div className="grid sm:grid-cols-2 gap-8">
+          {isSubmitted && (
+            <div
+              role="status"
+              className="flex items-start gap-3 rounded-xl border border-primary/25 bg-primary/10 px-4 py-4 text-left"
+            >
+              <CheckCircle
+                size={22}
+                className="text-primary shrink-0 mt-[2px]"
+              />
+
+              <div>
+                <p className="font-semibold text-black">
+                  Quote request submitted successfully.
+                </p>
+                <p className="text-sm text-gray-700 mt-1">
+                  Thank you for your request. We’ll get back to you shortly.
+                </p>
+              </div>
+            </div>
+          )}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             <div>
               <label htmlFor="quote-name" className="block font-bold mb-4">
                 Name
@@ -103,7 +130,7 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
                 placeholder="Your name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full border-0 border-b-2 border-black pb-2 placeholder:text-gray-400 focus:outline-none focus:border-[#c6a85b]"
+                className="w-full border-0 border-b-2 border-black pb-2 placeholder:text-gray-400 focus:outline-none focus:border-primary"
               />
             </div>
 
@@ -120,7 +147,7 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
                 placeholder="Your phone number"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full border-0 border-b-2 border-black pb-2 placeholder:text-gray-400 focus:outline-none focus:border-[#c6a85b]"
+                className="w-full border-0 border-b-2 border-black pb-2 placeholder:text-gray-400 focus:outline-none focus:border-primary"
               />
             </div>
           </div>
@@ -135,7 +162,7 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
               required
               value={formData.service}
               onChange={handleChange}
-              className="w-full border-0 border-b-2 border-black pb-2 bg-transparent focus:outline-none focus:border-[#c6a85b]"
+              className="w-full border-0 border-b-2 border-black pb-2 bg-transparent focus:outline-none focus:border-primary"
             >
               <option value="">Select a service</option>
               <option value="Cleaning">Cleaning</option>
@@ -147,7 +174,7 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
           </div>
 
           <div>
-            <label htmlFor="quote-details" className="block font-bold mb-6">
+            <label htmlFor="quote-details" className="block font-bold mb-4">
               Project Details
             </label>
             <textarea
@@ -158,13 +185,13 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
               placeholder="Tell us about the property, service needed, timeline, or any important details..."
               value={formData.details}
               onChange={handleChange}
-              className="w-full border-0 border-b-2 border-black resize-none placeholder:text-gray-400 focus:outline-none focus:border-[#c6a85b]"
+              className="w-full border-0 border-b-2 border-black resize-none placeholder:text-gray-400 focus:outline-none focus:border-primary"
             ></textarea>
           </div>
 
           <button
             type="submit"
-            className="w-full sm:w-[220px] mx-auto block bg-[#c6a85b] text-white py-3 rounded-lg text-lg font-medium shadow-md hover:translate-y-[2px] hover:shadow-sm transition"
+            className="w-full sm:w-[220px] mx-auto block bg-primary text-white py-3 rounded-lg text-lg font-medium shadow-md hover:translate-y-[2px] hover:shadow-sm transition"
           >
             Get a Quote
           </button>

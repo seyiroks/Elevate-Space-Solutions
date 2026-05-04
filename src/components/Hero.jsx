@@ -27,7 +27,7 @@ const Hero = ({ onQuoteClick }) => {
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-[72%_center] sm:bg-[68%_center] md:bg-[62%_center] lg:bg-[center_65%]"
-        style={{ backgroundImage: "url('/hero.jpg')" }}
+        style={{ backgroundImage: "url('/hero.webp')" }}
         aria-hidden="true"
       />
 

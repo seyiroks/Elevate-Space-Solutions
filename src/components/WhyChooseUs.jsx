@@ -38,7 +38,7 @@ const WhyChooseUs = ({ onQuoteClick }) => {
       {/* Background */}
       <div aria-hidden="true" className="absolute inset-0">
         <img
-          src="/why-choose-us.jpg"
+          src="/why-choose-us.webp"
           alt=""
           loading="lazy"
           className="w-full h-full object-cover object-[center_90%] scale-105 blur-[4px]"

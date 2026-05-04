@@ -105,7 +105,7 @@ const Transformation = () => {
             {/* AFTER */}
             <div className="absolute inset-0">
               <img
-                src="/after.jpg"
+                src="/after.webp"
                 alt="After transformation"
                 className="w-full h-full object-cover lg:object-contain"
                 draggable={false}
@@ -127,7 +127,7 @@ const Transformation = () => {
               }}
             >
               <img
-                src="/before.jpg"
+                src="/before.webp"
                 alt="Before transformation"
                 className="w-full h-full object-cover lg:object-contain"
                 draggable={false}

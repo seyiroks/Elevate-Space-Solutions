@@ -1,7 +1,7 @@
 const services = [
   {
     title: "Cleaning",
-    image: "/cleaning.jpg",
+    image: "/cleaning.webp",
     alt: "Professional cleaning service",
     description:
       "Spotless results, delivered with precision and care every time.",
@@ -14,7 +14,7 @@ const services = [
   },
   {
     title: "Interior Repairs",
-    image: "/repairs.jpg",
+    image: "/repairs.webp",
     alt: "Interior repair service",
     description:
       "Fixing the details that matter, restoring your space with precision.",
@@ -26,7 +26,7 @@ const services = [
   },
   {
     title: "Interior Design & Decoration",
-    image: "/design.jpg",
+    image: "/design.webp",
     alt: "Interior design and decoration service",
     description:
       "Thoughtfully designed spaces that blend style, comfort, and function.",

@@ -6,19 +6,19 @@ const testimonials = [
     text: "The transformation was seamless and exceeded expectations. Everything was handled professionally from start to finish.",
     name: "MJ Watson",
     service: "Interior Design Client",
-    avatar: "/avatar.png",
+    avatar: "/avatar.webp",
   },
   {
     text: "Reliable, efficient, and detail-oriented. I’ll definitely be using their services again for future projects.",
     name: "Peter Parker",
     service: "Cleaning Client",
-    avatar: "/avatar.png",
+    avatar: "/avatar.webp",
   },
   {
     text: "They completely elevated the space. The quality of work and attention to detail really stood out.",
     name: "Miles Morales",
     service: "Property Refresh Client",
-    avatar: "/avatar.png",
+    avatar: "/avatar.webp",
   },
 ];
 

@@ -28,7 +28,7 @@ const Footer = () => {
       {/* Background */}
       <div aria-hidden="true" className="absolute inset-0 z-0">
         <img
-          src="/footer-bg.jpg"
+          src="/footer-bg.webp"
           alt=""
           loading="lazy"
           className="w-full h-full object-cover object-[70%_100%] md:object-[center_100%] scale-105 blur-[2px]"

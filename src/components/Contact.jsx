@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, CheckCircle } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,8 @@ const Contact = () => {
     message: "",
   });
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -16,12 +18,16 @@ const Contact = () => {
       ...prev,
       [name]: value,
     }));
+
+    if (isSubmitted) {
+      setIsSubmitted(false);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    alert("Message sent successfully!");
+    setIsSubmitted(true);
 
     setFormData({
       name: "",
@@ -39,7 +45,7 @@ const Contact = () => {
           <div className="flex justify-center items-center gap-3">
             <span
               aria-hidden="true"
-              className="w-8 sm:w-10 h-[4px] bg-[#c6a85b]"
+              className="w-8 sm:w-10 h-[4px] bg-primary"
             ></span>
 
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-wide">
@@ -52,7 +58,7 @@ const Contact = () => {
         <div className="max-w-md sm:max-w-xl md:max-w-3xl xl:max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-2 gap-6 md:gap-8 xl:gap-16">
           {/* Left Card */}
           <div className="bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 px-5 sm:px-6 md:px-10 xl:px-12 py-8 sm:py-10 md:py-12 xl:py-16">
-            <h3 className="text-2xl md:text-[1.7rem] xl:text-3xl font-bold text-[#c6a85b] mb-5 md:mb-7 xl:mb-8 text-center xl:text-left">
+            <h3 className="text-2xl md:text-[1.7rem] xl:text-3xl font-bold text-primary mb-5 md:mb-7 xl:mb-8 text-center xl:text-left">
               Let’s Work Together
             </h3>
 
@@ -63,7 +69,6 @@ const Contact = () => {
             </p>
 
             <div className="space-y-7 md:space-y-8 xl:space-y-10">
-              {/* Phone */}
               <a
                 href="tel:07437851843"
                 aria-label="Call us on 07437 851843"
@@ -71,11 +76,11 @@ const Contact = () => {
               >
                 <div
                   aria-hidden="true"
-                  className="w-12 h-12 md:w-14 md:h-14 xl:w-16 xl:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0 group-hover:bg-[#c6a85b] transition"
+                  className="w-12 h-12 md:w-14 md:h-14 xl:w-16 xl:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0 group-hover:bg-primary transition"
                 >
                   <Phone
                     size={24}
-                    className="text-[#c6a85b] group-hover:text-white transition"
+                    className="text-primary group-hover:text-white transition"
                   />
                 </div>
 
@@ -91,7 +96,6 @@ const Contact = () => {
 
               <div aria-hidden="true" className="h-px bg-gray-200"></div>
 
-              {/* Email */}
               <a
                 href="mailto:clean@kpelevatespacesolutionscom.com"
                 aria-label="Email us"
@@ -99,11 +103,11 @@ const Contact = () => {
               >
                 <div
                   aria-hidden="true"
-                  className="w-12 h-12 md:w-14 md:h-14 xl:w-16 xl:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0 group-hover:bg-[#c6a85b] transition"
+                  className="w-12 h-12 md:w-14 md:h-14 xl:w-16 xl:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0 group-hover:bg-primary transition"
                 >
                   <Mail
                     size={24}
-                    className="text-[#c6a85b] group-hover:text-white transition"
+                    className="text-primary group-hover:text-white transition"
                   />
                 </div>
 
@@ -117,13 +121,12 @@ const Contact = () => {
 
               <div aria-hidden="true" className="h-px bg-gray-200"></div>
 
-              {/* Location */}
               <div className="flex items-center gap-4 md:gap-5">
                 <div
                   aria-hidden="true"
                   className="w-12 h-12 md:w-14 md:h-14 xl:w-16 xl:h-16 rounded-full bg-[#f4f4f4] flex items-center justify-center shrink-0"
                 >
-                  <MapPin size={24} className="text-[#c6a85b]" />
+                  <MapPin size={24} className="text-primary" />
                 </div>
 
                 <div>
@@ -143,9 +146,29 @@ const Contact = () => {
             onSubmit={handleSubmit}
             className="bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 px-5 sm:px-6 md:px-10 xl:px-12 py-8 sm:py-10 md:py-12 xl:py-16"
           >
-            <h3 className="text-2xl md:text-[1.7rem] xl:text-3xl font-bold text-[#c6a85b] mb-7 md:mb-8 xl:mb-10 text-center xl:text-left">
+            <h3 className="text-2xl md:text-[1.7rem] xl:text-3xl font-bold text-primary mb-7 md:mb-8 xl:mb-10 text-center xl:text-left">
               Get in Touch with Us
             </h3>
+
+            {isSubmitted && (
+              <div
+                role="status"
+                className="mb-8 flex items-start gap-3 rounded-xl border border-primary/25 bg-primary/10 px-4 py-4 text-left"
+              >
+                <CheckCircle
+                  size={22}
+                  className="text-primary shrink-0 mt-[2px]"
+                />
+                <div>
+                  <p className="font-semibold text-black">
+                    Message sent successfully.
+                  </p>
+                  <p className="text-sm text-gray-700 mt-1">
+                    Thank you for reaching out. We’ll get back to you shortly.
+                  </p>
+                </div>
+              </div>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-8 xl:gap-10 mb-8 xl:mb-10">
               <div>
@@ -160,7 +183,7 @@ const Contact = () => {
                   placeholder="Your name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full border-0 border-b-2 border-black pb-2 placeholder:text-gray-400 focus:outline-none focus:border-[#c6a85b]"
+                  className="w-full border-0 border-b-2 border-black pb-2 placeholder:text-gray-400 focus:outline-none focus:border-primary"
                 />
               </div>
 
@@ -176,7 +199,7 @@ const Contact = () => {
                   placeholder="Your phone number"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full border-0 border-b-2 border-black pb-2 placeholder:text-gray-400 focus:outline-none focus:border-[#c6a85b]"
+                  className="w-full border-0 border-b-2 border-black pb-2 placeholder:text-gray-400 focus:outline-none focus:border-primary"
                 />
               </div>
             </div>
@@ -190,7 +213,7 @@ const Contact = () => {
                 required
                 value={formData.service}
                 onChange={handleChange}
-                className="w-full border-0 border-b-2 border-black pb-2 bg-transparent focus:outline-none focus:border-[#c6a85b]"
+                className="w-full border-0 border-b-2 border-black pb-2 bg-transparent focus:outline-none focus:border-primary"
               >
                 <option value="">Select a service</option>
                 <option value="Cleaning">Cleaning</option>
@@ -212,13 +235,13 @@ const Contact = () => {
                 placeholder="Tell us about your project..."
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full border-0 border-b-2 border-black resize-none placeholder:text-gray-400 focus:outline-none focus:border-[#c6a85b]"
+                className="w-full border-0 border-b-2 border-black resize-none placeholder:text-gray-400 focus:outline-none focus:border-primary"
               ></textarea>
             </div>
 
             <button
               type="submit"
-              className="w-full sm:w-[190px] bg-[#c6a85b] text-white py-3 rounded-lg text-base md:text-lg xl:text-xl font-medium shadow-md hover:translate-y-[2px] hover:shadow-sm transition mx-auto xl:mx-0 block"
+              className="w-full sm:w-[190px] bg-primary text-white py-3 rounded-lg text-base md:text-lg xl:text-xl font-medium shadow-md hover:translate-y-[2px] hover:shadow-sm transition mx-auto xl:mx-0 block"
             >
               Submit
             </button>
