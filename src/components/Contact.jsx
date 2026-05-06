@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin, CheckCircle } from "lucide-react";
+import { Phone, Mail, MapPin, CheckCircle, AlertCircle } from "lucide-react";
+
+const WEB3FORMS_ACCESS_KEY = "71b6b00b-e01a-45ac-a467-6377e778c6e4";
 
 const Contact = () => {
-  const whatsappNumber = "233263200184";
-
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -11,15 +11,12 @@ const Contact = () => {
     message: "",
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [status, setStatus] = useState({
+    type: "",
+    message: "",
+  });
 
-  const sendToWhatsApp = (message) => {
-    const encodedMessage = encodeURIComponent(message);
-    window.open(
-      `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
-      "_blank"
-    );
-  };
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,32 +26,64 @@ const Contact = () => {
       [name]: value,
     }));
 
-    if (isSubmitted) {
-      setIsSubmitted(false);
+    if (status.type) {
+      setStatus({ type: "", message: "" });
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setStatus({ type: "", message: "" });
 
-    const message = `
-New Contact Form Message
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: "New Contact Form Message - Elevate Space Solutions",
+      from_name: "Elevate Space Solutions Website",
+      name: formData.name,
+      phone: formData.phone,
+      service: formData.service,
+      message: formData.message,
+    };
 
-Name: ${formData.name}
-Phone: ${formData.phone}
-Service Required: ${formData.service}
-Message: ${formData.message}
-    `;
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
 
-    sendToWhatsApp(message);
-    setIsSubmitted(true);
+      const result = await response.json();
 
-    setFormData({
-      name: "",
-      phone: "",
-      service: "",
-      message: "",
-    });
+      if (result.success) {
+        setStatus({
+          type: "success",
+          message: "Message sent successfully.",
+        });
+
+        setFormData({
+          name: "",
+          phone: "",
+          service: "",
+          message: "",
+        });
+      } else {
+        setStatus({
+          type: "error",
+          message: "Something went wrong. Please try again.",
+        });
+      }
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message: "Network error. Please check your connection and try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -170,21 +199,33 @@ Message: ${formData.message}
               Get in Touch with Us
             </h3>
 
-            {isSubmitted && (
+            {status.type && (
               <div
                 role="status"
-                className="mb-8 flex items-start gap-3 rounded-xl border border-primary/25 bg-primary/10 px-4 py-4 text-left"
+                className={`mb-8 flex items-start gap-3 rounded-xl border px-4 py-4 text-left ${
+                  status.type === "success"
+                    ? "border-primary/25 bg-primary/10"
+                    : "border-red-200 bg-red-50"
+                }`}
               >
-                <CheckCircle
-                  size={22}
-                  className="text-primary shrink-0 mt-[2px]"
-                />
+                {status.type === "success" ? (
+                  <CheckCircle
+                    size={22}
+                    className="text-primary shrink-0 mt-[2px]"
+                  />
+                ) : (
+                  <AlertCircle
+                    size={22}
+                    className="text-red-500 shrink-0 mt-[2px]"
+                  />
+                )}
+
                 <div>
-                  <p className="font-semibold text-black">
-                    Message sent successfully.
-                  </p>
+                  <p className="font-semibold text-black">{status.message}</p>
                   <p className="text-sm text-gray-700 mt-1">
-                    Thank you for reaching out. We’ll get back to you shortly.
+                    {status.type === "success"
+                      ? "Thank you for reaching out. We’ll get back to you shortly."
+                      : "Please try again or contact us directly."}
                   </p>
                 </div>
               </div>
@@ -261,9 +302,10 @@ Message: ${formData.message}
 
             <button
               type="submit"
-              className="w-full sm:w-[190px] bg-primary text-white py-3 rounded-lg text-base md:text-lg xl:text-xl font-medium shadow-md hover:translate-y-[2px] hover:shadow-sm transition mx-auto xl:mx-0 block"
+              disabled={isSubmitting}
+              className="w-full sm:w-[190px] bg-primary text-white py-3 rounded-lg text-base md:text-lg xl:text-xl font-medium shadow-md hover:translate-y-[2px] hover:shadow-sm transition mx-auto xl:mx-0 block disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
             >
-              Submit
+              {isSubmitting ? "Sending..." : "Submit"}
             </button>
           </form>
         </div>

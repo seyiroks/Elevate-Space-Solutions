@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { CheckCircle, X } from "lucide-react";
+import { CheckCircle, AlertCircle, X } from "lucide-react";
+
+const WEB3FORMS_ACCESS_KEY = "71b6b00b-e01a-45ac-a467-6377e778c6e4";
 
 const initialFormData = {
   name: "",
@@ -9,18 +11,12 @@ const initialFormData = {
 };
 
 const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
-  const whatsappNumber = "233263200184";
-
   const [formData, setFormData] = useState(initialFormData);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const sendToWhatsApp = (message) => {
-    const encodedMessage = encodeURIComponent(message);
-    window.open(
-      `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
-      "_blank"
-    );
-  };
+  const [status, setStatus] = useState({
+    type: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -28,7 +24,7 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
         ...initialFormData,
         service: selectedService || "",
       });
-      setIsSubmitted(false);
+      setStatus({ type: "", message: "" });
     }
   }, [isOpen, selectedService]);
 
@@ -58,26 +54,59 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
       [name]: value,
     }));
 
-    if (isSubmitted) {
-      setIsSubmitted(false);
+    if (status.type) {
+      setStatus({ type: "", message: "" });
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setStatus({ type: "", message: "" });
 
-    const message = `
-New Quote Request
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: "New Quote Request - Elevate Space Solutions",
+      from_name: "Elevate Space Solutions Website",
+      name: formData.name,
+      phone: formData.phone,
+      service: formData.service,
+      project_details: formData.details,
+    };
 
-Name: ${formData.name}
-Phone: ${formData.phone}
-Service Required: ${formData.service}
-Project Details: ${formData.details}
-    `;
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
 
-    sendToWhatsApp(message);
-    setIsSubmitted(true);
-    setFormData(initialFormData);
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus({
+          type: "success",
+          message: "Quote request submitted successfully.",
+        });
+
+        setFormData(initialFormData);
+      } else {
+        setStatus({
+          type: "error",
+          message: "Something went wrong. Please try again.",
+        });
+      }
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message: "Network error. Please check your connection and try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -115,22 +144,33 @@ Project Details: ${formData.details}
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-8">
-          {isSubmitted && (
+          {status.type && (
             <div
               role="status"
-              className="flex items-start gap-3 rounded-xl border border-primary/25 bg-primary/10 px-4 py-4 text-left"
+              className={`flex items-start gap-3 rounded-xl border px-4 py-4 text-left ${
+                status.type === "success"
+                  ? "border-primary/25 bg-primary/10"
+                  : "border-red-200 bg-red-50"
+              }`}
             >
-              <CheckCircle
-                size={22}
-                className="text-primary shrink-0 mt-[2px]"
-              />
+              {status.type === "success" ? (
+                <CheckCircle
+                  size={22}
+                  className="text-primary shrink-0 mt-[2px]"
+                />
+              ) : (
+                <AlertCircle
+                  size={22}
+                  className="text-red-500 shrink-0 mt-[2px]"
+                />
+              )}
 
               <div>
-                <p className="font-semibold text-black">
-                  Quote request submitted successfully.
-                </p>
+                <p className="font-semibold text-black">{status.message}</p>
                 <p className="text-sm text-gray-700 mt-1">
-                  Thank you for your request. We’ll get back to you shortly.
+                  {status.type === "success"
+                    ? "Thank you for your request. We’ll get back to you shortly."
+                    : "Please try again or contact us directly."}
                 </p>
               </div>
             </div>
@@ -211,9 +251,10 @@ Project Details: ${formData.details}
 
           <button
             type="submit"
-            className="w-full sm:w-[220px] mx-auto block bg-primary text-white py-3 rounded-lg text-lg font-medium shadow-md hover:translate-y-[2px] hover:shadow-sm transition"
+            disabled={isSubmitting}
+            className="w-full sm:w-[220px] mx-auto block bg-primary text-white py-3 rounded-lg text-lg font-medium shadow-md hover:translate-y-[2px] hover:shadow-sm transition disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
           >
-            Get a Quote
+            {isSubmitting ? "Sending..." : "Get a Quote"}
           </button>
         </form>
       </div>
