@@ -48,7 +48,7 @@ const Testimonials = () => {
           <div className="flex justify-center items-center gap-3">
             <span
               aria-hidden="true"
-              className="w-8 sm:w-10 h-[4px] bg-[#c6a85b]"
+              className="w-8 sm:w-10 h-[4px] bg-primary"
             ></span>
 
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-wide">
@@ -63,37 +63,42 @@ const Testimonials = () => {
             <TestimonialCard item={testimonials[activeIndex]} />
           </div>
 
-          <div className="flex items-center justify-center gap-6 mt-8">
+          <div className="flex items-center justify-center gap-4 sm:gap-6 mt-8">
             <button
               type="button"
               onClick={previousTestimonial}
-              className="w-10 h-10 rounded-full border border-[#c6a85b] text-[#c6a85b] flex items-center justify-center hover:bg-[#c6a85b] hover:text-white transition"
+              className="w-10 h-10 rounded-full border border-primary text-primary flex items-center justify-center hover:bg-primary hover:text-white transition"
               aria-label="Previous testimonial"
             >
               <ChevronLeft size={20} />
             </button>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   type="button"
                   onClick={() => setActiveIndex(index)}
-                  className={`h-2.5 rounded-full transition ${
-                    activeIndex === index
-                      ? "w-6 bg-[#c6a85b]"
-                      : "w-2.5 bg-gray-300"
-                  }`}
+                  className="w-10 h-10 flex items-center justify-center rounded-full transition"
                   aria-label={`Go to testimonial ${index + 1}`}
                   aria-current={activeIndex === index ? "true" : undefined}
-                />
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`h-2.5 rounded-full transition ${
+                      activeIndex === index
+                        ? "w-6 bg-primary"
+                        : "w-2.5 bg-gray-300"
+                    }`}
+                  ></span>
+                </button>
               ))}
             </div>
 
             <button
               type="button"
               onClick={nextTestimonial}
-              className="w-10 h-10 rounded-full border border-[#c6a85b] text-[#c6a85b] flex items-center justify-center hover:bg-[#c6a85b] hover:text-white transition"
+              className="w-10 h-10 rounded-full border border-primary text-primary flex items-center justify-center hover:bg-primary hover:text-white transition"
               aria-label="Next testimonial"
             >
               <ChevronRight size={20} />
@@ -116,7 +121,7 @@ const Testimonials = () => {
 
 const TestimonialCard = ({ item }) => {
   return (
-    <div className="bg-[#c6a85b] rounded-2xl px-6 sm:px-7 md:px-8 py-8 md:py-9 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 h-full flex flex-col">
+    <div className="bg-primary rounded-2xl px-6 sm:px-7 md:px-8 py-8 md:py-9 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 h-full flex flex-col">
       {/* Quote */}
       <div
         aria-hidden="true"

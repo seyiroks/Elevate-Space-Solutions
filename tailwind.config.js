@@ -7,9 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#C6A75E",       // main gold
-        primaryLight: "#E2C98A",  // hover / soft backgrounds
-        primaryDark: "#A88C45",   // hover darker state
+        primary: "#C6A75E",        // main gold for buttons/backgrounds
+        primaryLight: "#E2C98A",   // soft backgrounds
+        primaryDark: "#A88C45",    // darker gold for hover states
+
+        primaryText: "#7A6128",    // accessible gold text on white
 
         dark: "#1E1E1E",
         lightGray: "#F5F5F5",
