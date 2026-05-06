@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Phone, Mail, MapPin, CheckCircle } from "lucide-react";
 
 const Contact = () => {
+  const whatsappNumber = "233263200184";
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -10,6 +12,14 @@ const Contact = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const sendToWhatsApp = (message) => {
+    const encodedMessage = encodeURIComponent(message);
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
+      "_blank"
+    );
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +37,16 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const message = `
+New Contact Form Message
+
+Name: ${formData.name}
+Phone: ${formData.phone}
+Service Required: ${formData.service}
+Message: ${formData.message}
+    `;
+
+    sendToWhatsApp(message);
     setIsSubmitted(true);
 
     setFormData({

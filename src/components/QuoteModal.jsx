@@ -9,8 +9,18 @@ const initialFormData = {
 };
 
 const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
+  const whatsappNumber = "233263200184";
+
   const [formData, setFormData] = useState(initialFormData);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const sendToWhatsApp = (message) => {
+    const encodedMessage = encodeURIComponent(message);
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
+      "_blank"
+    );
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -56,6 +66,16 @@ const QuoteModal = ({ isOpen, onClose, selectedService = "" }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const message = `
+New Quote Request
+
+Name: ${formData.name}
+Phone: ${formData.phone}
+Service Required: ${formData.service}
+Project Details: ${formData.details}
+    `;
+
+    sendToWhatsApp(message);
     setIsSubmitted(true);
     setFormData(initialFormData);
   };
