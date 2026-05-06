@@ -233,10 +233,14 @@ const Contact = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-8 xl:gap-10 mb-8 xl:mb-10">
               <div>
-                <label className="block text-base md:text-lg xl:text-xl font-bold mb-3 xl:mb-4">
+                <label
+                  htmlFor="contact-name"
+                  className="block text-base md:text-lg xl:text-xl font-bold mb-3 xl:mb-4"
+                >
                   Name
                 </label>
                 <input
+                  id="contact-name"
                   name="name"
                   type="text"
                   required
@@ -249,10 +253,14 @@ const Contact = () => {
               </div>
 
               <div>
-                <label className="block text-base md:text-lg xl:text-xl font-bold mb-3 xl:mb-4">
+                <label
+                  htmlFor="contact-phone"
+                  className="block text-base md:text-lg xl:text-xl font-bold mb-3 xl:mb-4"
+                >
                   Phone
                 </label>
                 <input
+                  id="contact-phone"
                   name="phone"
                   type="tel"
                   required
@@ -266,10 +274,14 @@ const Contact = () => {
             </div>
 
             <div className="mb-8 xl:mb-10">
-              <label className="block text-base md:text-lg xl:text-xl font-bold mb-3 xl:mb-4">
+              <label
+                htmlFor="contact-service"
+                className="block text-base md:text-lg xl:text-xl font-bold mb-3 xl:mb-4"
+              >
                 Service Required
               </label>
               <select
+                id="contact-service"
                 name="service"
                 required
                 value={formData.service}
@@ -286,10 +298,14 @@ const Contact = () => {
             </div>
 
             <div className="mb-8 xl:mb-10">
-              <label className="block text-base md:text-lg xl:text-xl font-bold mb-3 xl:mb-4">
+              <label
+                htmlFor="contact-message"
+                className="block text-base md:text-lg xl:text-xl font-bold mb-3 xl:mb-4"
+              >
                 Message
               </label>
               <textarea
+                id="contact-message"
                 name="message"
                 rows="4"
                 required
